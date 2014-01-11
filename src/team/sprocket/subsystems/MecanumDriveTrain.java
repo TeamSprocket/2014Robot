@@ -20,7 +20,7 @@ public class MecanumDriveTrain extends Subsystem {
     
     public void translate(double magnitude, double bearing){
         magnitude *= Math.sqrt(2);
-        bearing %= 360;
+        bearing %= 360;                                                         //make sure bearing does not exceed 360
         bearing -= CommandBase.sensors.getAngle();
         direction = bearingToDirection(bearing);                                //calculate angle (in degrees) of magic triangle
         
