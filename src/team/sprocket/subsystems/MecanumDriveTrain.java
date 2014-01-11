@@ -33,10 +33,7 @@ public class MecanumDriveTrain extends Subsystem {
     }
     
     private double bearingToDirection(double bearing){
-        if(bearing < 0){                                                        //make sure direction is positive
-            bearing += 360;                                                     //convert negative direction to positive direction
-        }
-        double d = 90 - bearing;                                                //we grew up watching ed, edd, 'n eddy
+        double d = 90-bearing ;                                                 //we grew up watching ed, edd, 'n eddy
         if(d < 0){                                                              //make sure direction is positive
             d += 360;                                                           //convert negative direction to positive direction
         }
