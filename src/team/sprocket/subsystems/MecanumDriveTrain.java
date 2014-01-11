@@ -1,15 +1,11 @@
 //Contributors: BH, HC, TL
 
-//I'm not even sure if this works... 
-
 package team.sprocket.subsystems;
 
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import team.sprocket.main.RobotMap;
-import team.sprocket.commands.ButtonDrive;
 import team.sprocket.commands.CommandBase;
-import team.sprocket.commands.TankDrive;
 
 public class MecanumDriveTrain extends Subsystem {
     
@@ -37,9 +33,12 @@ public class MecanumDriveTrain extends Subsystem {
     }
     
     private double bearingToDirection(double bearing){
-        double d = (-1 * bearing) + 90;                                         //we grew up watching ed, edd, 'n eddy
+        if(bearing < 0){                                                        //make sure direction is positive
+            bearing += 360;                                                     //convert negative direction to positive direction
+        }
+        double d = bearing - 90;                                         //we grew up watching ed, edd, 'n eddy
         if(d < 0){                                                              //make sure direction is positive
-            d = 360 + d;                                                        //convert negative direction to positive direction
+            d += 360;                                                           //convert negative direction to positive direction
         }
         return d;
     }
