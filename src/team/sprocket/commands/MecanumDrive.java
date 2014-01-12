@@ -1,13 +1,13 @@
-//Contributors: HC
+//Contributors: HC, BH, TL
 
 package team.sprocket.commands;
 
 public class MecanumDrive extends CommandBase {
     
-    double bearing;
+    private double bearing;
     
     public MecanumDrive() {
-        
+        requires(mecanumDriveTrain);
     }
     
     protected void initialize() {
@@ -15,7 +15,7 @@ public class MecanumDrive extends CommandBase {
     }
 
     protected void execute() {
-        //this is where the real stuff happens!
+        
     }
 
     // Make this return true when this Command no longer needs to run execute()
