@@ -1,0 +1,17 @@
+Jasmine, this is where you put stuff (:
+
+STRAWBERRIES
+
+Motors (digital module, pwm port)
+Drivetrain Front Left   (1,1)
+Drivetrain Front Right  (1,3)
+Drivetrain Back Left    (1,2)
+Drivetrain Back Right   (1,4)
+
+Servos (digital module, pwm port)
+
+
+Limit Switches (digital module, IO port)
+
+
+Relays (solenoid port)
