@@ -30,7 +30,7 @@ public class MecanumDrive extends CommandBase {
         jy = getJoystickY();
         if(Math.abs(jx) > deadBand || Math.abs(jy) > deadBand){     //if outside deadband
             magnitude = Math.sqrt(MathUtils.pow(jx,2) + MathUtils.pow(jy,2));
-            bearing = MathUtils.atan(jx / jy);
+            findBearing();
             quadrantCompensation();
             SmartDashboard.putNumber("Bearing: ", bearing);
             SmartDashboard.putNumber("Magnitude: ", magnitude);
@@ -41,6 +41,22 @@ public class MecanumDrive extends CommandBase {
             mecanumDriveTrain.turn(getJoystickZ());
         }
         else mecanumDriveTrain.stop();
+    }
+    
+    private void findBearing(){
+        if(jy == 0){
+            System.out.println("zero");
+            if(jx > 0){
+                bearing = 90;
+            }
+            if(jx < 0){
+                bearing = -90;
+            }
+        }
+        else{
+            System.out.println("NOT zero");
+            bearing = Math.toDegrees(MathUtils.atan(jx / jy));
+        }
     }
     
     private void quadrantCompensation(){
