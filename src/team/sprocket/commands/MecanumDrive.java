@@ -27,17 +27,19 @@ public class MecanumDrive extends CommandBase {
 
     protected void execute() {
         jx = getJoystickX();
-        jy = getJoystickY();
+        jy = -getJoystickY();
         if(Math.abs(jx) > deadBand || Math.abs(jy) > deadBand){     //if outside deadband
             magnitude = Math.sqrt(MathUtils.pow(jx,2) + MathUtils.pow(jy,2));
             findBearing();
             quadrantCompensation();
+            SmartDashboard.putNumber("X Value: ", jx);
+            SmartDashboard.putNumber("Y Value: ", jy);
             SmartDashboard.putNumber("Bearing: ", bearing);
             SmartDashboard.putNumber("Magnitude: ", magnitude);
-            mecanumDriveTrain.translate(magnitude, bearing);
+            mecanumDriveTrain.translate(0.5*magnitude, bearing);
             return;
         }
-        if(Math.abs(getJoystickZ()) > deadBand){
+        if(Math.abs(Math.abs(getJoystickZ())) > deadBand){
             mecanumDriveTrain.turn(getJoystickZ());
         }
         else mecanumDriveTrain.stop();
