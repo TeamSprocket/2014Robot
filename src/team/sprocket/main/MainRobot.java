@@ -11,14 +11,9 @@ package team.sprocket.main;
 
 
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import team.sprocket.commands.ButtonDrive;
 import team.sprocket.commands.CommandBase;
-import team.sprocket.commands.EBrake;
-import team.sprocket.commands.TankDrive;
-import team.sprocket.commands.TusharDrive;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -56,10 +51,29 @@ public class MainRobot extends IterativeRobot {
         //CommandList.tankDrive.start();
         CommandList.mecanumDrive.start();
         CommandList.accelerationMonitor.start();
+        CommandList.cock.start();
     }
 
     public void teleopPeriodic() {
-        Scheduler.getInstance().run();
+        //Scheduler.getInstance().run();
+        
+        //Harvest Listener
+        if(OI.jb_LeftTrigger.get()){
+            CommandList.harvest.start();
+        }
+        else CommandBase.arm.rollStop();
+        
+        //Plant Listener
+        if(OI.jb_RightTrigger.get()){
+            CommandList.plant.start();
+        }
+        else CommandBase.arm.rollStop();
+        
+        //Shoot Listener
+        if(OI.jb_RightThrottle.get()){
+            CommandList.shoot.start();
+            CommandList.cock.start();
+        }
     }
     
     public void testPeriodic() {

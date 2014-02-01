@@ -10,7 +10,7 @@ public class ButtonDrive extends CommandBase {
     private double initialDistance, currentDistance;
     
     public ButtonDrive() {
-        requires(differentialDriveTrain);
+        
     }
 
     protected void initialize() {

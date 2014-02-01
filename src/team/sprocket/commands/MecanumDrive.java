@@ -6,7 +6,6 @@ import com.sun.squawk.util.MathUtils;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import team.sprocket.main.OI;
-import java.util.*;
 
 public class MecanumDrive extends CommandBase {
     
@@ -14,11 +13,11 @@ public class MecanumDrive extends CommandBase {
     
     private double bearing;
     private double magnitude;
-    private double jx, jy;      //joystick axis values
+    private double jx, jy, jz;      //joystick axis values
     
     
     public MecanumDrive() {
-        requires(mecanumDriveTrain);
+        
     }
     
     protected void initialize() {
@@ -28,6 +27,7 @@ public class MecanumDrive extends CommandBase {
     protected void execute() {
         jx = getJoystickX();
         jy = -getJoystickY();
+        jz = getJoystickZ();
         if(Math.abs(jx) > deadBand || Math.abs(jy) > deadBand){     //if outside deadband
             magnitude = Math.sqrt(MathUtils.pow(jx,2) + MathUtils.pow(jy,2));
             findBearing();
@@ -36,13 +36,14 @@ public class MecanumDrive extends CommandBase {
             SmartDashboard.putNumber("Y Value: ", jy);
             SmartDashboard.putNumber("Bearing: ", bearing);
             SmartDashboard.putNumber("Magnitude: ", magnitude);
-            mecanumDriveTrain.translate(0.5*magnitude, bearing);
-            return;
+            mecanumDriveTrain.translate(0.5*magnitude, bearing, jz);
         }
-        if(Math.abs(Math.abs(getJoystickZ())) > deadBand){
+        if(Math.abs(getJoystickZ()) > deadBand){
             mecanumDriveTrain.turn(getJoystickZ());
         }
         else mecanumDriveTrain.stop();
+        
+        
     }
     
     private void findBearing(){
