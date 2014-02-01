@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class ShootSequence extends CommandGroup {
     
     public ShootSequence() {
-
+        
     }
 
     protected void initialize() {

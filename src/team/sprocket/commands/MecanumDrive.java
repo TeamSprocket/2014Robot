@@ -36,7 +36,7 @@ public class MecanumDrive extends CommandBase {
             SmartDashboard.putNumber("Y Value: ", jy);
             SmartDashboard.putNumber("Bearing: ", bearing);
             SmartDashboard.putNumber("Magnitude: ", magnitude);
-            mecanumDriveTrain.translate(0.5*magnitude, bearing, jz);
+            mecanumDriveTrain.translate(magnitude, bearing, jz);
         }
         if(Math.abs(getJoystickZ()) > deadBand){
             mecanumDriveTrain.turn(getJoystickZ());
