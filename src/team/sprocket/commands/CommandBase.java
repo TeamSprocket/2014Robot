@@ -4,6 +4,7 @@ package team.sprocket.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import team.sprocket.main.OI;
+import team.sprocket.subsystems.Arm;
 import team.sprocket.subsystems.DifferentialDriveTrain;
 import team.sprocket.subsystems.MecanumDriveTrain;
 import team.sprocket.subsystems.Sensors;
@@ -21,6 +22,7 @@ public abstract class CommandBase extends Command {
     public static DifferentialDriveTrain differentialDriveTrain = new DifferentialDriveTrain();
     public static MecanumDriveTrain mecanumDriveTrain = new MecanumDriveTrain();
     public static Sensors sensors = new Sensors();
+    public static Arm arm = new Arm();
 
     public static void init() {
         // This MUST be here. If the OI creates Commands (which it very likely

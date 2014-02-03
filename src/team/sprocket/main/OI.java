@@ -4,6 +4,7 @@ package team.sprocket.main;
 
 import edu.wpi.first.wpilibj.ADXL345_I2C;
 import edu.wpi.first.wpilibj.AnalogChannel;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -35,6 +36,9 @@ public class OI {
     //public static final HiTechnicCompass co_compass = new HiTechnicCompass(1);
     public static final Gyro gy_gyro = new Gyro(1);
     public static final AnalogChannel u_ping = new AnalogChannel(2); //MaxBotix Ultrasonic Ping Sensor
+    public static final DigitalInput ls_rackLimit = new DigitalInput(1,1);
+    public static final DigitalInput ls_advanceLatchLimit = new DigitalInput(1,2);
+    public static final DigitalInput ls_withdrawLatchLimit = new DigitalInput(1,3);
     
     //bill's comment!!!!!!
     

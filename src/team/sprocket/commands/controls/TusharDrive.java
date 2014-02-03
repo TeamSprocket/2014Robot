@@ -11,7 +11,7 @@ public class TusharDrive extends CommandBase {
     private double rightPower;
     
     public TusharDrive() {
-        requires(differentialDriveTrain);
+       
     }
 
     // Called just before this Command runs the first time

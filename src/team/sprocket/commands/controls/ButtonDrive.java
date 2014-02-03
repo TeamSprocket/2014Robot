@@ -3,7 +3,6 @@
 package team.sprocket.commands;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import team.sprocket.main.CommandList;
 import team.sprocket.main.OI;
 
 public class ButtonDrive extends CommandBase {
@@ -11,7 +10,7 @@ public class ButtonDrive extends CommandBase {
     private double initialDistance, currentDistance;
     
     public ButtonDrive() {
-        requires(differentialDriveTrain);
+        
     }
 
     protected void initialize() {

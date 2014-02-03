@@ -2,55 +2,47 @@
 
 package team.sprocket.subsystems;
 
-import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import team.sprocket.main.RobotMap;
-import team.sprocket.commands.ButtonDrive;
-import team.sprocket.commands.TankDrive;
 
 public class DifferentialDriveTrain extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
     
-    private final Victor v_FrontLeftDriveTrain = new Victor(RobotMap.driveTrainDigitalModule, RobotMap.frontLeftDriveTrainMotorPort);
-    private final Victor v_FrontRightDriveTrain = new Victor(RobotMap.driveTrainDigitalModule, RobotMap.frontRightDriveTrainMotorPort);
-    private final Victor v_BackLeftDriveTrain = new Victor(RobotMap.driveTrainDigitalModule, RobotMap.backLeftDriveTrainMotorPort);
-    private final Victor v_BackRightDriveTrain = new Victor(RobotMap.driveTrainDigitalModule, RobotMap.backRightDriveTrainMotorPort);
-    
     //sets left side of Drive Train going at certain speed
     public void setLeftSide(double speed){
-        v_FrontLeftDriveTrain.set(speed);
-        v_BackLeftDriveTrain.set(speed);
+        RobotMap.v_FrontLeftDriveTrain.set(speed);
+        RobotMap.v_BackLeftDriveTrain.set(speed);
     }
     
     //sets left side of Drive Train full speed forward
     public void leftSideForward(){
-        v_FrontLeftDriveTrain.set(1);
-        v_BackLeftDriveTrain.set(1);
+        RobotMap.v_FrontLeftDriveTrain.set(1);
+        RobotMap.v_BackLeftDriveTrain.set(1);
     }
     
     //sets left side of Drive Train full speed back
     public void leftSideBack(){
-        v_FrontLeftDriveTrain.set(-1);
-        v_BackLeftDriveTrain.set(-1);
+        RobotMap.v_FrontLeftDriveTrain.set(-1);
+        RobotMap.v_BackLeftDriveTrain.set(-1);
     }
     
     //sets right side of Drive Train going at certain speed
     public void setRightSide(double speed){
-        v_FrontRightDriveTrain.set(-1*speed);
-        v_BackRightDriveTrain.set(-1*speed);
+        RobotMap.v_FrontRightDriveTrain.set(-1*speed);
+        RobotMap.v_BackRightDriveTrain.set(-1*speed);
     }
     
     //sets right side of Drive Train full speed forward
     public void rightSideForward(){
-        v_FrontRightDriveTrain.set(-1);
-        v_BackRightDriveTrain.set(-1);
+        RobotMap.v_FrontRightDriveTrain.set(-1);
+        RobotMap.v_BackRightDriveTrain.set(-1);
     }
     
     //sets right side of Drive Train full speed back
     public void rightSideBack(){
-        v_FrontRightDriveTrain.set(1);
-        v_BackRightDriveTrain.set(1);
+        RobotMap.v_FrontRightDriveTrain.set(1);
+        RobotMap.v_BackRightDriveTrain.set(1);
     }
     
     //sends Drive Train into forward motion at specified speed

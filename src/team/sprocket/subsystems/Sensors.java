@@ -17,6 +17,18 @@ public class Sensors extends Subsystem {
         return OI.cm_axis.getImage();
     }
     
+    public boolean cockLimit(){
+        return OI.ls_rackLimit.get();
+    }
+    
+    public boolean advanceLatchLimit(){
+        return OI.ls_advanceLatchLimit.get();
+    }
+    
+    public boolean withdrawLatchLimit(){
+        return OI.ls_withdrawLatchLimit.get();
+    }
+    
     //returns distance in inches
     public double getDistance(){
         double voltage = OI.u_ping.getVoltage();

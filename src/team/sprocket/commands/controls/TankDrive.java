@@ -7,7 +7,7 @@ import team.sprocket.main.OI;
 public class TankDrive extends CommandBase {
     
     public TankDrive() {
-        requires(differentialDriveTrain);
+        
     }
 
     // Called just before this Command runs the first time

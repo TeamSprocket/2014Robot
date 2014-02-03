@@ -2,34 +2,46 @@
 
 package team.sprocket.subsystems;
 
-import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import team.sprocket.main.RobotMap;
 import team.sprocket.commands.CommandBase;
 
 public class MecanumDriveTrain extends Subsystem {
     
-    private final Victor v_FrontLeftDriveTrain = new Victor(RobotMap.driveTrainDigitalModule, RobotMap.frontLeftDriveTrainMotorPort);
-    private final Victor v_FrontRightDriveTrain = new Victor(RobotMap.driveTrainDigitalModule, RobotMap.frontRightDriveTrainMotorPort);
-    private final Victor v_BackLeftDriveTrain = new Victor(RobotMap.driveTrainDigitalModule, RobotMap.backLeftDriveTrainMotorPort);
-    private final Victor v_BackRightDriveTrain = new Victor(RobotMap.driveTrainDigitalModule, RobotMap.backRightDriveTrainMotorPort);
-    
     private double frontLeftMag, frontRightMag, backLeftMag, backRightMag, direction, xComponent, yComponent;
     private final double deadBand   = .000000000000001;     //rounding compensation
     private final double r2d2       = Math.sqrt(2) / 2;     //root 2 denominator 2
+    private double turn;
     
-    public void translate(double magnitude, double bearing){
-        magnitude *= Math.sqrt(2);
-        bearing %= 360;                                                         //make sure bearing does not exceed 360
-        bearing -= CommandBase.sensors.getAngle();
+    public void translate(double magnitude, double bearing, double turn){
         direction = bearingToDirection(bearing);                                //calculate angle (in degrees) of magic triangle
+        this.turn = turn;
         
         xComponent = magnitude * Math.cos(Math.toRadians(direction));           //calculate x component of translation vector
         yComponent = magnitude * Math.sin(Math.toRadians(direction));           //calculate y component of translation vector
         
         findMagnitudes();       //calculates needed speed for each motor
+        turn();
         setVictors();           //sends values to Victors
         
+    }
+    
+    public void stop(){
+        RobotMap.v_FrontLeftDriveTrain.set(0);
+        RobotMap.v_FrontRightDriveTrain.set(0);
+        RobotMap.v_BackLeftDriveTrain.set(0);
+        RobotMap.v_BackRightDriveTrain.set(0);
+    }
+    
+    private void leftSideSet(double value){
+        frontLeftMag = value;
+        backLeftMag = value;
+    }
+    
+    private void rightSideSet(double value){
+        frontRightMag = value;
+        backRightMag = value;
     }
     
     private double bearingToDirection(double bearing){
@@ -63,10 +75,10 @@ public class MecanumDriveTrain extends Subsystem {
     }
     
     private void setVictors(){  //sets victors to certain speed
-        v_FrontLeftDriveTrain.set(frontLeftMag);
-        v_FrontRightDriveTrain.set(frontRightMag);
-        v_BackLeftDriveTrain.set(backLeftMag);
-        v_BackRightDriveTrain.set(backRightMag);
+        RobotMap.v_FrontLeftDriveTrain.set(frontLeftMag);
+        RobotMap.v_FrontRightDriveTrain.set(-1*frontRightMag);      //accounts for right side inverse
+        RobotMap.v_BackLeftDriveTrain.set(backLeftMag);
+        RobotMap.v_BackRightDriveTrain.set(-1*backRightMag);        //accounts for right side inverse
         refresh();
     }
     
@@ -77,14 +89,32 @@ public class MecanumDriveTrain extends Subsystem {
         backRightMag = 0;
     }
     
-    public void turn(double speed, boolean dRoTA){    //parameter determines whether turn CW or CCW
-        if(dRoTA){
-            frontRightMag = speed;
-            backLeftMag = -1 * speed;
+    public void turn(double speed){    //parameter determines whether turn CW or CCW
+        if(speed < 0){
+            SmartDashboard.putString("Turn", "Counter-Clockwise");
+            rightSideSet(Math.abs(speed));
+            leftSideSet(-Math.abs(speed));
         }
-        if(!dRoTA){
-            frontLeftMag = speed;
-            backRightMag = -1 * speed;
+        if(speed > 0){
+            SmartDashboard.putString("Turn", "Clockwise");
+            rightSideSet(-Math.abs(speed));
+            leftSideSet(Math.abs(speed));
+        }
+        setVictors();
+    }
+    
+    private void turn(){
+        if(turn < -0.1){
+            frontLeftMag -= Math.abs(turn);
+            backLeftMag -= Math.abs(turn);
+            frontRightMag += Math.abs(turn);
+            backRightMag += Math.abs(turn);
+        }
+        if(turn > 0.1){
+            frontLeftMag += Math.abs(turn);
+            backLeftMag += Math.abs(turn);
+            frontRightMag -= Math.abs(turn);
+            backRightMag -= Math.abs(turn);
         }
     }
 
