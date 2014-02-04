@@ -71,7 +71,8 @@ public class MainRobot extends IterativeRobot {
         
         //Shoot Listener
         if(OI.jb_RightThrottle.get()){
-            CommandList.shootSequence.start();
+            CommandList.shoot.start();
+            CommandList.cock.start();
         }
     }
     

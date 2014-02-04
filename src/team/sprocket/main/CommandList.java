@@ -14,7 +14,6 @@ import team.sprocket.commands.Harvest;
 import team.sprocket.commands.MecanumDrive;
 import team.sprocket.commands.Plant;
 import team.sprocket.commands.Shoot;
-import team.sprocket.commands.ShootSequence;
 import team.sprocket.commands.TankDrive;
 import team.sprocket.commands.TusharDrive;
 
@@ -31,7 +30,6 @@ public class CommandList {
     public static final Command shoot = new Shoot();
     public static final Command harvest = new Harvest();
     public static final Command plant = new Plant();
-    public static final Command shootSequence = new ShootSequence();
     public static final AccelerationMonitor accelerationMonitor = new AccelerationMonitor();
 
 }
