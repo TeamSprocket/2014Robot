@@ -1,10 +1,11 @@
 //Contributors: HC, BH, TL
 
-package team.sprocket.commands;
+package team.sprocket.commands.controls;
 
 import com.sun.squawk.util.MathUtils;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import team.sprocket.commands.CommandBase;
 import team.sprocket.main.OI;
 
 public class MecanumDrive extends CommandBase {
@@ -37,6 +38,7 @@ public class MecanumDrive extends CommandBase {
             SmartDashboard.putNumber("Bearing: ", bearing);
             SmartDashboard.putNumber("Magnitude: ", magnitude);
             mecanumDriveTrain.translate(magnitude, bearing, jz);
+            return;
         }
         if(Math.abs(getJoystickZ()) > deadBand){
             mecanumDriveTrain.turn(getJoystickZ());

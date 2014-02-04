@@ -1,8 +1,9 @@
 //Contributors: HC
 
-package team.sprocket.commands;
+package team.sprocket.commands.controls;
 
 import edu.wpi.first.wpilibj.Joystick;
+import team.sprocket.commands.CommandBase;
 import team.sprocket.main.OI;
 
 public class TusharDrive extends CommandBase {

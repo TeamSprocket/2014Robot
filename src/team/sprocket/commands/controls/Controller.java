@@ -3,12 +3,14 @@
 package team.sprocket.commands.controls;
 
 import team.sprocket.commands.CommandBase;
+import team.sprocket.main.CommandList;
 import team.sprocket.main.OI;
 
-public class TankDrive extends CommandBase {
+public class Controller extends CommandBase {
     
-    public TankDrive() {
-        
+    public Controller() {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
@@ -17,29 +19,37 @@ public class TankDrive extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    
+        //Harvest Listener
         if(OI.jb_LeftTrigger.get()){
-            differentialDriveTrain.setLeftSide(OI.jy_Left.getY());
+            CommandList.harvest.start();
         }
+        else CommandBase.arm.rollStop();
+        
+        //Plant Listener
         if(OI.jb_RightTrigger.get()){
-            differentialDriveTrain.setRightSide(OI.jy_Right.getY());
+            CommandList.plant.start();
         }
-        else differentialDriveTrain.stop();
+        else CommandBase.arm.rollStop();
+        
+        //Shoot Listener
+        if(OI.jb_RightThrottle.get()){
+            CommandList.shoot.start();
+            CommandList.cock.start();
+        }
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         return false;
-        //never stop
     }
 
     // Called once after isFinished returns true
     protected void end() {
-        differentialDriveTrain.stop();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-        end();
     }
 }

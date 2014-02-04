@@ -1,8 +1,9 @@
 //Contributors: TL, HC, BH
 
-package team.sprocket.commands;
+package team.sprocket.commands.shooter;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import team.sprocket.commands.CommandBase;
 
 public class Harvest extends CommandBase {
     

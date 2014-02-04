@@ -1,6 +1,8 @@
 //Contributors: HC, BH
 
-package team.sprocket.commands;
+package team.sprocket.commands.shooter;
+
+import team.sprocket.commands.CommandBase;
 
 public class Shoot extends CommandBase {
     

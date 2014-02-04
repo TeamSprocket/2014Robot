@@ -7,15 +7,17 @@ package team.sprocket.main;
 import edu.wpi.first.wpilibj.command.Command;
 import team.sprocket.commands.AccelerationMonitor;
 import team.sprocket.commands.Autonomous;
-import team.sprocket.commands.ButtonDrive;
-import team.sprocket.commands.Cock;
 import team.sprocket.commands.EBrake;
-import team.sprocket.commands.Harvest;
-import team.sprocket.commands.MecanumDrive;
-import team.sprocket.commands.Plant;
-import team.sprocket.commands.Shoot;
-import team.sprocket.commands.TankDrive;
-import team.sprocket.commands.TusharDrive;
+import team.sprocket.commands.controls.ButtonDrive;
+import team.sprocket.commands.controls.Controller;
+import team.sprocket.commands.controls.MecanumDrive;
+import team.sprocket.commands.controls.TankDrive;
+import team.sprocket.commands.controls.TusharDrive;
+import team.sprocket.commands.shooter.Cock;
+import team.sprocket.commands.shooter.Harvest;
+import team.sprocket.commands.shooter.Plant;
+import team.sprocket.commands.shooter.Shoot;
+import team.sprocket.commands.shooter.ShootSequence;
 
 //formerly known as Init class in 2013Robot code
 public class CommandList {
@@ -29,7 +31,9 @@ public class CommandList {
     public static final Command cock = new Cock();
     public static final Command shoot = new Shoot();
     public static final Command harvest = new Harvest();
+    public static final Command controller = new Controller();
     public static final Command plant = new Plant();
+    public static final Command shootSequence = new ShootSequence();
     public static final AccelerationMonitor accelerationMonitor = new AccelerationMonitor();
 
 }

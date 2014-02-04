@@ -49,31 +49,15 @@ public class MainRobot extends IterativeRobot {
         
         //CommandList.tusharDrive.start();
         //CommandList.tankDrive.start();
+        //CommandList.buttonDrive.start();
         CommandList.mecanumDrive.start();
-        CommandList.accelerationMonitor.start();
-        CommandList.cock.start();
+        //CommandList.accelerationMonitor.start();
+        //CommandList.cock.start();
     }
 
     public void teleopPeriodic() {
-        //Scheduler.getInstance().run();
+        Scheduler.getInstance().run();
         
-        //Harvest Listener
-        if(OI.jb_LeftTrigger.get()){
-            CommandList.harvest.start();
-        }
-        else CommandBase.arm.rollStop();
-        
-        //Plant Listener
-        if(OI.jb_RightTrigger.get()){
-            CommandList.plant.start();
-        }
-        else CommandBase.arm.rollStop();
-        
-        //Shoot Listener
-        if(OI.jb_RightThrottle.get()){
-            CommandList.shoot.start();
-            CommandList.cock.start();
-        }
     }
     
     public void testPeriodic() {
