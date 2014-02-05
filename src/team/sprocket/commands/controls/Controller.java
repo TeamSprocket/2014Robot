@@ -22,21 +22,32 @@ public class Controller extends CommandBase {
     
         //Harvest Listener
         if(OI.jb_LeftTrigger.get()){
-            CommandList.harvest.start();
+            arm.rollIn();               //Harvest
         }
-        else CommandBase.arm.rollStop();
+        else arm.rollStop();
         
         //Plant Listener
         if(OI.jb_RightTrigger.get()){
-            CommandList.plant.start();
+            arm.rollOut();              //Plant
         }
-        else CommandBase.arm.rollStop();
+        else arm.rollStop();
         
         //Shoot Listener
         if(OI.jb_RightThrottle.get()){
-            CommandList.shoot.start();
-            CommandList.cock.start();
+            CommandList.shootSequence.start();
         }
+        
+        //arm up listener
+        if(OI.jb_GamepadA.get()){
+            arm.armDown();
+        }
+        else arm.armStop();
+        
+        //arm down listener
+        if(OI.jb_GamepadY.get()){
+            arm.armDown();
+        }
+        else arm.armDown();
     }
 
     // Make this return true when this Command no longer needs to run execute()

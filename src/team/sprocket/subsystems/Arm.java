@@ -7,6 +7,30 @@ import team.sprocket.main.RobotMap;
 
 public class Arm extends Subsystem {
     
+    public void armUp(){
+        RobotMap.v_armActuator.set(1);
+    }
+    
+    public void armDown(){
+        RobotMap.v_armActuator.set(-1);
+    }
+    
+    public void armStop(){
+        RobotMap.v_armActuator.set(0);
+    }
+    
+    public void harvesterUp(){
+        RobotMap.v_harvesterActuator.set(1);
+    }
+    
+    public void harvesterDown(){
+        RobotMap.v_harvesterActuator.set(-1);
+    }
+    
+    public void harvesterStop(){
+        RobotMap.v_harvesterActuator.set(0);
+    }
+    
     public void withdrawRack(){
         RobotMap.v_mainRackDriver.set(-1);
     }

@@ -15,6 +15,8 @@ public class MecanumDrive extends CommandBase {
     private double bearing;
     private double magnitude;
     private double jx, jy, jz;      //joystick axis values
+    private boolean leftOffCenter = false;
+    private boolean rightOffCenter = false;
     
     
     public MecanumDrive() {
@@ -29,23 +31,24 @@ public class MecanumDrive extends CommandBase {
         jx = getJoystickX();
         jy = -getJoystickY();
         jz = getJoystickZ();
-        if(Math.abs(jx) > deadBand || Math.abs(jy) > deadBand){     //if outside deadband
+        leftOffCenter = (Math.abs(jx) > deadBand || Math.abs(jy) > deadBand);
+        rightOffCenter = (Math.abs(jz) > deadBand);
+        if(leftOffCenter){     //if outside deadband
             magnitude = Math.sqrt(MathUtils.pow(jx,2) + MathUtils.pow(jy,2));
             findBearing();
             quadrantCompensation();
-            SmartDashboard.putNumber("X Value: ", jx);
-            SmartDashboard.putNumber("Y Value: ", jy);
+            //SmartDashboard.putNumber("X Value: ", jx);
+            //SmartDashboard.putNumber("Y Value: ", jy);
             SmartDashboard.putNumber("Bearing: ", bearing);
             SmartDashboard.putNumber("Magnitude: ", magnitude);
             mecanumDriveTrain.translate(magnitude, bearing, jz);
             return;
         }
-        if(Math.abs(getJoystickZ()) > deadBand){
+        if(rightOffCenter){
             mecanumDriveTrain.turn(getJoystickZ());
         }
         else mecanumDriveTrain.stop();
-        
-        
+  
     }
     
     private void findBearing(){

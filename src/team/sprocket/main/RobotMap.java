@@ -14,11 +14,13 @@ import edu.wpi.first.wpilibj.Victor;
 //named HW class last year...not sure why (HC)
 public class RobotMap {
     
-    //Digital IO Module # for Victors
+    //Digital IO Module # for Arm Motors
     public static final int driveTrainDigitalModule         = 1;
     public static final int rackDriverDigitalModule         = 1;
     public static final int triggerWindowMotorDigitalModule = 1;
     public static final int collectorMotorDigitalModule     = 1;
+    public static final int armActuatorDigitalModule        = 1;
+    public static final int harvesterActuatorDigitalModule  = 1;
     
     //PWM Port # for Drive Train Motors
     public static final int frontLeftDriveTrainMotorPort    = 1;
@@ -30,6 +32,8 @@ public class RobotMap {
     public static final int rackDriverMotorPort             = 5;
     public static final int triggerWindowMotorPort          = 6;
     public static final int collectorMotorPort              = 7;
+    public static final int armActuatorMotorPort            = 8;
+    public static final int harvesterActuatorMotorPort      = 9;
     
     //USB Port # for Interface Devices
     public static final int leftJoystickUSBPort             = 1;
@@ -49,4 +53,6 @@ public class RobotMap {
     public static final Victor v_mainRackDriver = new Victor(rackDriverDigitalModule, rackDriverMotorPort);
     public static final Victor v_triggerWindowMotor = new Victor(triggerWindowMotorDigitalModule, triggerWindowMotorPort);
     public static final Victor v_collectorMotor = new Victor(collectorMotorDigitalModule, collectorMotorPort);
+    public static final Victor v_harvesterActuator = new Victor(harvesterActuatorDigitalModule, harvesterActuatorMotorPort);
+    public static final Victor v_armActuator = new Victor(armActuatorDigitalModule, armActuatorMotorPort);
 }

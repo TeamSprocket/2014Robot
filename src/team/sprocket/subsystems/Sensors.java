@@ -17,6 +17,22 @@ public class Sensors extends Subsystem {
         return OI.cm_axis.getImage();
     }
     
+    public double getLeftPot(){
+        return OI.p_leftHarvester.getVoltage();
+    }
+    
+    public double getRightPot(){
+        return OI.p_rightHarvester.getVoltage();
+    }
+    
+    public double getShooterAngle(){
+        double left = getLeftPot();
+        double right = getRightPot();
+        double average = (left + right)/2;
+        double angle = average;                             //formula to be implemented
+        return angle;
+    }
+    
     public boolean cockLimit(){
         return OI.ls_rackLimit.get();
     }

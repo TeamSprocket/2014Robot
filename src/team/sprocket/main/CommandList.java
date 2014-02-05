@@ -6,6 +6,7 @@ package team.sprocket.main;
 
 import edu.wpi.first.wpilibj.command.Command;
 import team.sprocket.commands.AccelerationMonitor;
+import team.sprocket.commands.AutoAimSystem;
 import team.sprocket.commands.Autonomous;
 import team.sprocket.commands.EBrake;
 import team.sprocket.commands.controls.ButtonDrive;
@@ -34,6 +35,7 @@ public class CommandList {
     public static final Command controller = new Controller();
     public static final Command plant = new Plant();
     public static final Command shootSequence = new ShootSequence();
+    public static final Command autoAimSystem = new AutoAimSystem();
     public static final AccelerationMonitor accelerationMonitor = new AccelerationMonitor();
 
 }
