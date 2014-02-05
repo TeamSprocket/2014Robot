@@ -7,11 +7,26 @@ Drivetrain Front Left   (1,1)
 Drivetrain Front Right  (1,3)
 Drivetrain Back Left    (1,2)
 Drivetrain Back Right   (1,4)
+Shooter Rack            (1,5)
+Shooter Latch           (1,6)
+Harvester Driver        (1,7)
+Arm Actuator            (1,8)
+Harvester Actuator      (1,9)
 
 Servos (digital module, pwm port)
 
+Analog Sensors (channel #)
+Gyroscope               (1)
+Front Ultrasonic        (2)
+Left Pot                (3)
+Right Pot               (4)
 
-Limit Switches (digital module, IO port)
+
+Limit Switches (digital module, digital IO port)
+Rack Back               (1,1)
+Rack Forward            (1,2)
+Latch Back              (1,3)
+Latch Forward           (1,4)
 
 
 Relays (solenoid port)
