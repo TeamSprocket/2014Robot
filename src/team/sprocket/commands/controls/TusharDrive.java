@@ -21,13 +21,13 @@ public class TusharDrive extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        if(OI.jb_RightThrottle.get()){
+        if(OI.jb_RightGamepadThrottle.get()){
             updateValues();
             differentialDriveTrain.setLeftSide(leftPower);
             differentialDriveTrain.setRightSide(rightPower);
             return;
         }
-        if(OI.jb_LeftThrottle.get()){
+        if(OI.jb_LeftGamepadThrottle.get()){
             updateValues();
             differentialDriveTrain.setLeftSide(-1*leftPower);
             differentialDriveTrain.setRightSide(-1*rightPower);

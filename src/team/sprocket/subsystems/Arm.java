@@ -15,6 +15,14 @@ public class Arm extends Subsystem {
         RobotMap.v_armActuator.set(-1);
     }
     
+    public void armUp(double speed){
+        RobotMap.v_armActuator.set(speed);
+    }
+    
+    public void armDown(double speed){
+        RobotMap.v_armActuator.set(-speed);
+    }
+    
     public void armStop(){
         RobotMap.v_armActuator.set(0);
     }

@@ -53,7 +53,6 @@ public class MecanumDrive extends CommandBase {
     
     private void findBearing(){
         if(jy == 0){
-            System.out.println("zero");
             if(jx > 0){
                 bearing = 90;
             }
@@ -62,7 +61,6 @@ public class MecanumDrive extends CommandBase {
             }
         }
         else{
-            System.out.println("NOT zero");
             bearing = Math.toDegrees(MathUtils.atan(jx / jy));
         }
     }

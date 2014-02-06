@@ -37,10 +37,6 @@ public class ButtonDrive extends CommandBase {
             differentialDriveTrain.allForward(0.5);
             return;
         }
-        if(OI.jb_LeftThrottle.get()){
-            goDistance(36);
-            return;
-        }
         else differentialDriveTrain.stop();
     }
     

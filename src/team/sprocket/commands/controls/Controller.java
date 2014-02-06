@@ -2,11 +2,16 @@
 
 package team.sprocket.commands.controls;
 
+import edu.wpi.first.wpilibj.Joystick;
 import team.sprocket.commands.CommandBase;
 import team.sprocket.main.CommandList;
 import team.sprocket.main.OI;
 
 public class Controller extends CommandBase {
+    
+    private double deadband = 0.1;
+    private double armspeed = 0.5;
+    private double jy;
     
     public Controller() {
         // Use requires() here to declare subsystem dependencies
@@ -19,35 +24,53 @@ public class Controller extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    
+        
+        jy = getJoystickY();
+        
         //Harvest Listener
-        if(OI.jb_LeftTrigger.get()){
+        if(getJoystickBottom()){
             arm.rollIn();               //Harvest
         }
         else arm.rollStop();
         
         //Plant Listener
-        if(OI.jb_RightTrigger.get()){
+        if(getJoystickTop()){
             arm.rollOut();              //Plant
         }
         else arm.rollStop();
         
         //Shoot Listener
-        if(OI.jb_RightThrottle.get()){
+        if(getJoystickTrigger() && getJoystickTop() && getJoystickBottom()){
             CommandList.shootSequence.start();
         }
         
         //arm up listener
-        if(OI.jb_GamepadA.get()){
-            arm.armDown();
+        if(getJoystickTrigger() && Math.abs(jy) > deadband && jy < 0){
+            arm.armDown(armspeed);
         }
         else arm.armStop();
         
         //arm down listener
-        if(OI.jb_GamepadY.get()){
-            arm.armDown();
+        if(getJoystickTrigger() && Math.abs(jy) > deadband && jy > 0){
+            arm.armDown(armspeed);
         }
         else arm.armDown();
+    }
+    
+    private double getJoystickY(){
+        return OI.jy_LeftAttack.getAxis(Joystick.AxisType.kY);
+    }
+    
+    private boolean getJoystickTrigger(){
+        return OI.jb_LeftAttackTrigger.get();
+    }
+    
+    private boolean getJoystickTop(){
+        return OI.jb_LeftAttackTop.get();
+    }
+    
+    private boolean getJoystickBottom(){
+        return OI.jb_LeftAttackBottom.get();
     }
 
     // Make this return true when this Command no longer needs to run execute()
