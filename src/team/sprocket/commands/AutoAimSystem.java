@@ -10,7 +10,6 @@ public class AutoAimSystem extends CommandBase {
     private double currentArmAngle;
     private double targetArmAngle;
     private double harvesterAngle;
-    private double deadband = 0.1;          //set deadband laterr
     
     public AutoAimSystem() {
         // Use requires() here to declare subsystem dependencies
@@ -32,15 +31,7 @@ public class AutoAimSystem extends CommandBase {
     }
     
     private void moveShooter(){
-        if(targetArmAngle > currentArmAngle){
-            arm.armUp();                        //raise arm
-        }
-        if(targetArmAngle < currentArmAngle){
-            arm.armDown();                     //lower arm
-        }
-        if(Math.abs(targetArmAngle - currentArmAngle) < deadband){
-            arm.armStop();
-        }
+        arm.moveArmTo(targetArmAngle);
     }
     
 
