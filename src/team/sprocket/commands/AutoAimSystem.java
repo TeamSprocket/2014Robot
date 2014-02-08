@@ -25,13 +25,9 @@ public class AutoAimSystem extends CommandBase {
     protected void execute() {
         if(SmartDashboard.getBoolean("AAS: ", true)){
             distance = sensors.getDistance();
-            currentArmAngle = sensors.getShooterAngle();
+            currentArmAngle = sensors.getArmAngle();
             targetArmAngle = currentArmAngle;               //formula to be implemented
             moveShooter();
-        }
-        else{
-            SmartDashboard.putString("Left Pot: ", new Double(sensors.getLeftPot()).toString());
-            SmartDashboard.putString("Right Pot: ", new Double(sensors.getRightPot()).toString());
         }
     }
     

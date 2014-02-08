@@ -3,16 +3,28 @@
 package team.sprocket.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import team.sprocket.commands.CommandBase;
 import team.sprocket.main.RobotMap;
 
 public class Arm extends Subsystem {
     
+    public void moveArmTo(double angle){
+        while(Math.abs(CommandBase.sensors.getArmAngle() - angle) > 0.05){
+            if(CommandBase.sensors.getArmAngle() < angle){
+                armUp();
+            }
+            else{
+                armDown();
+            }
+        }
+    }
+    
     public void armUp(){
-        RobotMap.v_armActuator.set(1);
+        RobotMap.v_armActuator.set(-1);
     }
     
     public void armDown(){
-        RobotMap.v_armActuator.set(-1);
+        RobotMap.v_armActuator.set(1);
     }
     
     public void armUp(double speed){

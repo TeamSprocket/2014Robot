@@ -42,11 +42,11 @@ public class OI {
     //public static final HiTechnicCompass co_compass = new HiTechnicCompass(1);
     public static final Gyro gy_gyro = new Gyro(1);
     public static final AnalogChannel u_ping = new AnalogChannel(2); //MaxBotix Ultrasonic Ping Sensor
-    public static final AnalogChannel p_leftHarvester = new AnalogChannel(3);
-    public static final AnalogChannel p_rightHarvester = new AnalogChannel(4);
+    public static final AnalogChannel p_Arm = new AnalogChannel(3);
     public static final DigitalInput ls_rackLimit = new DigitalInput(1,1);
     public static final DigitalInput ls_advanceLatchLimit = new DigitalInput(1,3);
     public static final DigitalInput ls_withdrawLatchLimit = new DigitalInput(1,2);
+    public static final DigitalInput ls_harvesterRaiseLimit = new DigitalInput(1,4);
     
     //bill's comment!!!!!!
     

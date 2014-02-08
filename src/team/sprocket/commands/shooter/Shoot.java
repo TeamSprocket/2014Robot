@@ -16,8 +16,16 @@ public class Shoot extends CommandBase {
     }
 
     protected void execute() {
+        raiseHarvester();
         unlatch();
         done = true;
+    }
+    
+    private void raiseHarvester(){
+        while(!sensors.harvesterLimit()){
+            arm.harvesterUp();
+        }
+        arm.harvesterStop();
     }
     
     private void unlatch(){

@@ -8,8 +8,9 @@ import team.sprocket.commands.CommandBase;
 public class Cock extends CommandBase {
     
     private boolean done = false;
-    private final double resetTime = 0.25;          //how long to run the motor to reset (advance) rack
-    
+    private final double rackTime = 0.25;          //how long to run the motor to reset (advance) rack
+    private final double lowerTime = 0.25;         //how long to run motor to lower harvester
+            
     public Cock() {
         
     }
@@ -25,10 +26,17 @@ public class Cock extends CommandBase {
             arm.stopRack();
             latch();
             arm.advanceRack();
-            Timer.delay(resetTime);
+            Timer.delay(rackTime);
             arm.stopRack();
+            lowerHarvester();
             done = true;
         }
+    }
+    
+    private void lowerHarvester(){
+        arm.harvesterDown();
+        Timer.delay(lowerTime);
+        arm.harvesterStop();
     }
     
     private void latch(){

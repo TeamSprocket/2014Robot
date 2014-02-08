@@ -29,6 +29,7 @@ public class Controller extends CommandBase {
         
         jy = getJoystickY();
         SmartDashboard.putString("Distance: ", new Double(sensors.getDistance()).toString());
+        SmartDashboard.putString("Pot Value: ", new Double(sensors.getArmPot()).toString());
         
         //Harvest Listener
         if(getJoystickBottom()){
