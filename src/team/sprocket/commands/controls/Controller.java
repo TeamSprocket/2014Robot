@@ -3,14 +3,16 @@
 package team.sprocket.commands.controls;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import team.sprocket.commands.CommandBase;
 import team.sprocket.main.CommandList;
 import team.sprocket.main.OI;
 
 public class Controller extends CommandBase {
     
-    private double deadband = 0.1;
+    private double deadband = 0.5;
     private double armspeed = 0.5;
+    private double harvestspeed = 0.5;
     private double jy;
     
     public Controller() {
@@ -26,6 +28,7 @@ public class Controller extends CommandBase {
     protected void execute() {
         
         jy = getJoystickY();
+        SmartDashboard.putString("Distance: ", new Double(sensors.getDistance()).toString());
         
         //Harvest Listener
         if(getJoystickBottom()){

@@ -45,8 +45,8 @@ public class OI {
     public static final AnalogChannel p_leftHarvester = new AnalogChannel(3);
     public static final AnalogChannel p_rightHarvester = new AnalogChannel(4);
     public static final DigitalInput ls_rackLimit = new DigitalInput(1,1);
-    public static final DigitalInput ls_advanceLatchLimit = new DigitalInput(1,2);
-    public static final DigitalInput ls_withdrawLatchLimit = new DigitalInput(1,3);
+    public static final DigitalInput ls_advanceLatchLimit = new DigitalInput(1,3);
+    public static final DigitalInput ls_withdrawLatchLimit = new DigitalInput(1,2);
     
     //bill's comment!!!!!!
     
