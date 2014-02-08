@@ -13,7 +13,7 @@ Harvester Driver        (1,7)
 Arm Actuator            (1,8)
 Harvester Actuator      (1,9)
 
-Servos (digital module, pwm port)
+Servos (digital module, PWM port)
 
 Analog Sensors (channel #)
 Gyroscope               (1)
