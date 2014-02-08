@@ -18,15 +18,14 @@ Servos (digital module, pwm port)
 Analog Sensors (channel #)
 Gyroscope               (1)
 Front Ultrasonic        (2)
-Left Pot                (3)
-Right Pot               (4)
+Potentiometer           (3)
+
 
 
 Limit Switches (digital module, digital IO port)
 Rack Back               (1,1)
-Rack Forward            (1,2)
-Latch Back              (1,3)
-Latch Forward           (1,4)
+Latch Back              (1,2)
+Latch Forward           (1,3)
 
 
 Relays (solenoid port)
