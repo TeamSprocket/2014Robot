@@ -28,11 +28,11 @@ public class Arm extends Subsystem {
     }
     
     public void armUp(double speed){
-        RobotMap.v_armActuator.set(speed);
+        RobotMap.v_armActuator.set(-speed);
     }
     
     public void armDown(double speed){
-        RobotMap.v_armActuator.set(-speed);
+        RobotMap.v_armActuator.set(speed);
     }
     
     public void armStop(){
@@ -61,10 +61,6 @@ public class Arm extends Subsystem {
     
     public void stopRack(){
         RobotMap.v_mainRackDriver.set(0);
-    }
-    
-    public void withdrawLatch(){
-        RobotMap.v_triggerWindowMotor.set(-1);
     }
     
     public void advanceLatch(){

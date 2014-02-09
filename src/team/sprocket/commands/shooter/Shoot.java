@@ -30,7 +30,7 @@ public class Shoot extends CommandBase {
     
     private void unlatch(){
         while(!sensors.withdrawLatchLimit()){
-            arm.withdrawLatch();
+            arm.advanceLatch();
         }
         arm.stopLatch();
     }
