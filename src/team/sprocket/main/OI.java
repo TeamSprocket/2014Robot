@@ -32,10 +32,12 @@ public class OI {
     
     public static final JoystickButton jb_LeftAttackTrigger = new JoystickButton(jy_LeftAttack, 1);
     public static final JoystickButton jb_RightAttackTrigger = new JoystickButton(jy_RightAttack, 1);
-    public static final JoystickButton jb_LeftAttackBottom = new JoystickButton(jy_RightAttack, 2);
+    public static final JoystickButton jb_LeftAttackBottom = new JoystickButton(jy_LeftAttack, 2);
     public static final JoystickButton jb_RightAttackBottom = new JoystickButton(jy_RightAttack, 2);
-    public static final JoystickButton jb_LeftAttackTop = new JoystickButton(jy_RightAttack, 3);
+    public static final JoystickButton jb_LeftAttackTop = new JoystickButton(jy_LeftAttack, 3);
     public static final JoystickButton jb_RightAttackTop = new JoystickButton(jy_RightAttack, 3);
+    public static final JoystickButton jb_LeftAttack8 = new JoystickButton(jy_LeftAttack, 8);
+    public static final JoystickButton jb_LeftAttack9 = new JoystickButton(jy_LeftAttack, 9);
     
     public static final ADXL345_I2C ac_main = new ADXL345_I2C(RobotMap.accelerometerDigitalModule, ADXL345_I2C.DataFormat_Range.k2G);
     public static final AxisCamera cm_axis = AxisCamera.getInstance();

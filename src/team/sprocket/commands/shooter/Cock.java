@@ -8,7 +8,7 @@ import team.sprocket.commands.CommandBase;
 public class Cock extends CommandBase {
     
     private boolean done = false;
-    private final double rackTime = 0.25;          //how long to run the motor to reset (advance) rack
+    private final double rackTime = 0.5;          //how long to run the motor to reset (advance) rack
     private final double lowerTime = 0.25;         //how long to run motor to lower harvester
             
     public Cock() {
@@ -24,8 +24,8 @@ public class Cock extends CommandBase {
             arm.withdrawRack();
         }
         else{
-            arm.stopRack();
             latch();
+            //arm.stopRack();
             arm.advanceRack();
             Timer.delay(rackTime);
             arm.stopRack();

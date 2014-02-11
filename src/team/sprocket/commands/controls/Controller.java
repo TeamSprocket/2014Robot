@@ -27,39 +27,57 @@ public class Controller extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        
+        arm.advanceLatch();
         jy = getJoystickY();
         SmartDashboard.putString("Distance: ", new Double(sensors.getDistance()).toString());
         SmartDashboard.putString("Pot Value: ", new Double(sensors.getArmPot()).toString());
+        SmartDashboard.putBoolean("Cock Limit: ", sensors.cockLimit());
+        SmartDashboard.putBoolean("Latch A Limit: ", sensors.advanceLatchLimit());
+        SmartDashboard.putBoolean("Latch W Limit: ", sensors.withdrawLatchLimit());
+        SmartDashboard.putBoolean("Harvester Limit: ", sensors.harvesterLimit());
+        
         
         //Harvest Listener
-        if(getJoystickBottom()){
-            arm.rollIn();               //Harvest
-        }
-        else arm.rollStop();
-        
-        //Plant Listener
-        if(getJoystickTop()){
-            arm.rollOut();              //Plant
+        if(getJoystickBottom() || getJoystickTop()){
+            //harvester listener
+            if(getJoystickBottom()){
+                arm.rollIn();               //Harvest
+            }
+            //plant listener
+            if(getJoystickTop()){
+                arm.rollOut();              //Plant
+            }
         }
         else arm.rollStop();
         
         //Shoot Listener
-        if(getJoystickTrigger() && getJoystickTop() && getJoystickBottom()){
+        if(getJoystick8() && getJoystick9()){
             CommandList.shootSequence.start();
         }
         
-        //arm up listener
-        if(getJoystickTrigger() && Math.abs(jy) > deadband && jy < 0){
-            arm.armDown(armspeed);
+        //arm listener
+        if(getJoystickTrigger() && Math.abs(jy) > deadband){
+            //arm up listener
+            if(jy > 0){
+                if(sensors.getArmPot() < 0.516){
+                    arm.armUp(armspeed);
+                }
+                else{
+                    arm.armStop();
+                }
+            }
+            //arm down listener
+            if(jy < 0){
+                if(sensors.getArmPot() > 0.00194){
+                    arm.armDown(armspeed);
+                }
+                else{
+                    arm.armStop();
+                }
+            }
+            
         }
         else arm.armStop();
-        
-        //arm down listener
-        if(getJoystickTrigger() && Math.abs(jy) > deadband && jy > 0){
-            arm.armDown(armspeed);
-        }
-        else arm.armDown();
     }
     
     private double getJoystickY(){
@@ -76,6 +94,14 @@ public class Controller extends CommandBase {
     
     private boolean getJoystickBottom(){
         return OI.jb_LeftAttackBottom.get();
+    }
+    
+    private boolean getJoystick8(){
+        return OI.jb_LeftAttack9.get();
+    }
+    
+    private boolean getJoystick9(){
+        return OI.jb_LeftAttack9.get();
     }
 
     // Make this return true when this Command no longer needs to run execute()
