@@ -16,7 +16,7 @@ public class Shoot extends CommandBase {
     }
 
     protected void execute() {
-        raiseHarvester();
+        //raiseHarvester();
         unlatch();
         done = true;
     }

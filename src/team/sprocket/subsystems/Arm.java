@@ -67,6 +67,10 @@ public class Arm extends Subsystem {
         RobotMap.v_triggerWindowMotor.set(1);
     }
     
+    public void withdrawLatch(){
+        RobotMap.v_triggerWindowMotor.set(-1);
+    }
+    
     public void stopLatch(){
         RobotMap.v_triggerWindowMotor.set(0);
     }

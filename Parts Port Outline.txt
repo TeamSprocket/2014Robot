@@ -27,6 +27,8 @@ Rack Back               (1,1)
 Latch Back              (1,2)
 Latch Forward           (1,3)
 Harvester Actuator      (1,4)
+Bottom Arm Limit        (1,5)
+Top Arm Limit           (1,6)
 
 
 Relays (solenoid port)
