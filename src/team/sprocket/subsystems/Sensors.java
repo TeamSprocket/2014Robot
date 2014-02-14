@@ -43,6 +43,14 @@ public class Sensors extends Subsystem {
         return OI.ls_withdrawLatchLimit.get();
     }
     
+    public boolean armLowerLimit(){
+        return OI.ls_armLowerLimit.get();
+    }
+    
+    public boolean armRaiseLimit(){
+        return OI.ls_armRaiseLimit.get();
+    }
+    
     //returns distance in inches
     public double getDistance(){
         double voltage = OI.u_ping.getVoltage();

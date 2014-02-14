@@ -83,6 +83,14 @@ public class Arm extends Subsystem {
         RobotMap.v_collectorMotor.set(1);
     }
     
+    public void rollIn(double speed){
+        RobotMap.v_collectorMotor.set(-speed);
+    }
+    
+    public void rollOut(double speed){                      //Cattlebots, Roll Out!
+        RobotMap.v_collectorMotor.set(speed);
+    }
+    
     public void rollStop(){
         RobotMap.v_collectorMotor.set(0);
     }

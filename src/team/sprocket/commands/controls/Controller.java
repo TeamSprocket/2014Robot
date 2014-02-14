@@ -1,4 +1,4 @@
-//Contributors: HC
+//Contributors: HC, TN, BK
 
 package team.sprocket.commands.controls;
 
@@ -36,52 +36,74 @@ public class Controller extends CommandBase {
         SmartDashboard.putBoolean("Latch A Limit: ", sensors.advanceLatchLimit());
         SmartDashboard.putBoolean("Latch W Limit: ", sensors.withdrawLatchLimit());
         SmartDashboard.putBoolean("Harvester Limit: ", sensors.harvesterLimit());
+        SmartDashboard.putBoolean("Arm Bottom Limit: ", sensors.armLowerLimit());
+        SmartDashboard.putBoolean("Arm Top Limit: ", sensors.armRaiseLimit());
         
         
         //Harvest Listener
         if(getJoystickBottom() || getJoystickTop()){
             //harvester listener
             if(getJoystickBottom()){
-                arm.rollIn();               //Harvest
+                arm.rollIn(harvestspeed);               //Harvest
             }
             //plant listener
             if(getJoystickTop()){
-                arm.rollOut();              //Plant
+                arm.rollOut(harvestspeed);              //Plant
             }
         }
         else arm.rollStop();
         
-        //manual rack operation
-        /*if(getJoystickBottom() || getJoystickTop()){
-            //rack withdraw
-            if(getJoystickBottom()){
-                if(!sensors.cockLimit()){
-                    arm.withdrawRack();
+        if(getGamepadA() || getGamepadY()){
+            if(getGamepadA()){
+                if(!sensors.harvesterLimit()){
+                    arm.harvesterUp();
                 }
             }
-            //rack advance
-            if(getJoystickTop()){
-                arm.advanceRack();
+            if(getGamepadY()){
+                arm.harvesterDown();
             }
         }
-        else arm.stopRack();*/
-        
+        else if(!CommandList.shoot.isRunning() && !CommandList.cock.isRunning() && !CommandList.shootSequence.isRunning()){
+            arm.harvesterStop();
+        }
+            
         if(getJoystick4()){
             if(!CommandList.cock.isRunning()){
                 CommandList.cock.start();
             }
         }
         
-        /*if(getJoystick5()){
-            arm.withdrawLatch();
+        if(getJoystick5()){
+            if(!sensors.advanceLatchLimit()){
+                arm.advanceLatch();
+            }
+            else arm.stopLatch();
         }
-        else arm.stopLatch();*/
+        else if(!CommandList.shoot.isRunning() && !CommandList.cock.isRunning() && !CommandList.shootSequence.isRunning()){
+            arm.stopLatch();
+        }
         
         //Shoot Listener
         if(getJoystick8() && getJoystick9()){
             if(!CommandList.shootSequence.isRunning()){
                 CommandList.shoot.start();
             }
+        }
+        
+        //manual rack operation
+        if(getJoystick6() || getJoystick7()){
+            if(getJoystick6()){
+                arm.advanceRack();
+            }
+            if(getJoystick7()){
+                if(!sensors.cockLimit()){
+                    arm.withdrawRack();
+                }
+            }
+            
+        }
+        else if(!CommandList.shoot.isRunning() && !CommandList.cock.isRunning() && !CommandList.shootSequence.isRunning()){
+            arm.stopRack();
         }
         
         //manual latch operation
@@ -101,7 +123,7 @@ public class Controller extends CommandBase {
         if(getJoystickTrigger() && Math.abs(jy) > deadband){
             //arm up listener
             if(jy > 0){
-                if(sensors.getArmPot() < 0.516){
+                if(!sensors.armRaiseLimit()){
                     arm.armUp(armspeed);
                 }
                 else{
@@ -110,7 +132,7 @@ public class Controller extends CommandBase {
             }
             //arm down listener
             if(jy < 0){
-                if(sensors.getArmPot() > 0.00194){
+                if(!sensors.armLowerLimit()){
                     arm.armDown(armspeed);
                 }
                 else{
@@ -120,6 +142,14 @@ public class Controller extends CommandBase {
             
         }
         else arm.armStop();
+    }
+    
+    private boolean getGamepadA(){
+        return OI.jb_GamepadA.get();
+    }
+    
+    private boolean getGamepadY(){
+        return OI.jb_GamepadY.get();
     }
     
     private double getJoystickY(){
