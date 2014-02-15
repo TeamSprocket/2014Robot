@@ -30,7 +30,7 @@ public class Cock extends CommandBase {
         arm.advanceRack();
         Timer.delay(rackTime);
         arm.stopRack();
-        //lowerHarvester();
+        lowerHarvester();
         done = true;
     }
     

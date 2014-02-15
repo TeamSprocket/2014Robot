@@ -29,7 +29,7 @@ public class AutoAimSystem extends CommandBase {
             arm.moveArmTo(4.28);
         }
         else if(distance > 118.05 && distance < 128){
-            arm.moveArmTo(4.44);
+            arm.moveArmTo(4.45);
         }
         done = true;
     }
