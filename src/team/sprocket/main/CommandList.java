@@ -16,6 +16,7 @@ import team.sprocket.commands.controls.TankDrive;
 import team.sprocket.commands.controls.TusharDrive;
 import team.sprocket.commands.shooter.Cock;
 import team.sprocket.commands.shooter.Harvest;
+import team.sprocket.commands.shooter.LowerHarvester;
 import team.sprocket.commands.shooter.Plant;
 import team.sprocket.commands.shooter.Shoot;
 import team.sprocket.commands.shooter.ShootSequence;
@@ -36,6 +37,7 @@ public class CommandList {
     public static final Command plant = new Plant();
     public static final Command shootSequence = new ShootSequence();
     public static final Command autoAimSystem = new AutoAimSystem();
+    public static final Command lowerHarvester = new LowerHarvester();
     public static final AccelerationMonitor accelerationMonitor = new AccelerationMonitor();
 
 }

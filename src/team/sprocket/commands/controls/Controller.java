@@ -12,7 +12,7 @@ import team.sprocket.main.OI;
 public class Controller extends CommandBase {
     
     private double deadband = 0.5;
-    private double armspeed = 0.5;
+    private double armspeed = 0.75;
     private double harvestspeed = 0.5;
     private double jy;
     
@@ -23,7 +23,9 @@ public class Controller extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        //CommandList.cock.start();
+        if(!sensors.advanceLatchLimit()){
+            CommandList.cock.start();
+        }
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -33,6 +35,7 @@ public class Controller extends CommandBase {
         SmartDashboard.putString("Distance: ", new Double(sensors.getDistance()).toString());
         SmartDashboard.putString("Pot Value: ", new Double(sensors.getArmPot()).toString());
         SmartDashboard.putBoolean("Cock Limit: ", sensors.cockLimit());
+        SmartDashboard.putString("Gyro Angle: ", new Double(sensors.getAngle()).toString());
         SmartDashboard.putBoolean("Latch A Limit: ", sensors.advanceLatchLimit());
         SmartDashboard.putBoolean("Latch W Limit: ", sensors.withdrawLatchLimit());
         SmartDashboard.putBoolean("Harvester Limit: ", sensors.harvesterLimit());
@@ -41,7 +44,7 @@ public class Controller extends CommandBase {
         
         
         //Harvest Listener
-        if(getJoystickBottom() || getJoystickTop()){
+        /*if(getJoystickBottom() || getJoystickTop()){
             //harvester listener
             if(getJoystickBottom()){
                 arm.rollIn(harvestspeed);               //Harvest
@@ -51,47 +54,57 @@ public class Controller extends CommandBase {
                 arm.rollOut(harvestspeed);              //Plant
             }
         }
+        else arm.rollStop();*/
+        
+        if(getGamepadLT() || getGamepadRT()){
+            //harvester listener
+            if(getGamepadLT()){
+                arm.rollIn(harvestspeed);               //Harvest
+            }
+            //plant listener
+            if(getGamepadRT()){
+                arm.rollOut(harvestspeed);              //Plant
+            }
+        }
         else arm.rollStop();
         
-        if(getGamepadA() || getGamepadY()){
-            if(getGamepadA()){
+        /*if(getJoystickBottom() || getJoystickTop()){
+            if(getJoystickBottom()){
                 if(!sensors.harvesterLimit()){
                     arm.harvesterUp();
                 }
             }
-            if(getGamepadY()){
-                arm.harvesterDown();
+            if(getJoystickTop()){
+                if(!CommandList.lowerHarvester.isRunning()){
+                    CommandList.lowerHarvester.start();
+                }
             }
         }
         else if(!CommandList.shoot.isRunning() && !CommandList.cock.isRunning() && !CommandList.shootSequence.isRunning()){
             arm.harvesterStop();
-        }
+        }*/
             
-        if(getJoystick4()){
-            if(!CommandList.cock.isRunning()){
-                CommandList.cock.start();
-            }
+        if(getJoystick4() && !CommandList.autoAimSystem.isRunning()){
+            CommandList.autoAimSystem.start();
         }
         
-        if(getJoystick5()){
+        /*if(getJoystick5()){
             if(!sensors.advanceLatchLimit()){
                 arm.advanceLatch();
             }
-            else arm.stopLatch();
+            //else arm.stopLatch();
         }
         else if(!CommandList.shoot.isRunning() && !CommandList.cock.isRunning() && !CommandList.shootSequence.isRunning()){
             arm.stopLatch();
-        }
+        }*/
         
         //Shoot Listener
-        if(getJoystick8() && getJoystick9()){
-            if(!CommandList.shootSequence.isRunning()){
-                CommandList.shoot.start();
-            }
+        if(getJoystickTop() && getJoystickBottom() && !CommandList.shootSequence.isRunning()){
+            CommandList.shootSequence.start();
         }
         
         //manual rack operation
-        if(getJoystick6() || getJoystick7()){
+        /*if(getJoystick6() || getJoystick7()){
             if(getJoystick6()){
                 arm.advanceRack();
             }
@@ -104,10 +117,10 @@ public class Controller extends CommandBase {
         }
         else if(!CommandList.shoot.isRunning() && !CommandList.cock.isRunning() && !CommandList.shootSequence.isRunning()){
             arm.stopRack();
-        }
+        }*/
         
         //manual latch operation
-        if(getJoystick10() || getJoystick11()){
+        /*if(getJoystick10() || getJoystick11()){
             if(getJoystick10()){
                 arm.withdrawLatch();
             }
@@ -117,7 +130,7 @@ public class Controller extends CommandBase {
         }
         else if(!CommandList.shoot.isRunning() && !CommandList.cock.isRunning() && !CommandList.shootSequence.isRunning()){
             arm.stopLatch();
-        }
+        }*/
         
         //arm listener
         if(getJoystickTrigger() && Math.abs(jy) > deadband){
@@ -150,6 +163,14 @@ public class Controller extends CommandBase {
     
     private boolean getGamepadY(){
         return OI.jb_GamepadY.get();
+    }
+    
+    private boolean getGamepadLT(){
+        return OI.jb_LeftGamepadTrigger.get();
+    }
+    
+    private boolean getGamepadRT(){
+        return OI.jb_RightGamepadTrigger.get();
     }
     
     private double getJoystickY(){

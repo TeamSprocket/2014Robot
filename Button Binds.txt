@@ -1,16 +1,20 @@
 Logitech Attack 3 (Left)
 
 Trigger (enables raise/lower arm)
-Button 2 (suck in harvester)
-Button 3 (blow out harvester)
+Button 2 (raise harvester)
+Button 3 (lower harvester command)
 Button 4 (starts Cock command)
-Button 5 (advance Latch until forward limit activate)
-Button 6 (manual withdraw rack)
-Button 7 (manual advance rack)
+Button 5 (advance Latch until forward limit activate)*
+Button 6 (manual withdraw rack)*
+Button 7 (manual advance rack)*
 Button 8 (used in conjunction w/ #9 to start Shoot command)
 Button 9 (used in conjunction w/ #8 to start Shoot command)
-Button 10 (manual withdraw latch)
-Button 11 (manual advance latch)
+Button 10 (manual withdraw latch)*
+Button 11 (manual advance latch)*
 
 
 Logitech Gamepad
+Button Y (harvester down)*
+Button A (harvester up)*
+Left Trigger (suck in harvester)
+Right Trigger (blow out harvester)

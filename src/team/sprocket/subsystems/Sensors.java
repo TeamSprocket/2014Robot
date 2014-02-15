@@ -23,7 +23,7 @@ public class Sensors extends Subsystem {
     
     public double getArmAngle(){
         double voltage = getArmPot();
-        double angle = voltage;                             //formula to be implemented
+        double angle = 79.63644937*voltage;                             //formula to be implemented
         return angle;
     }
     

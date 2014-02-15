@@ -52,7 +52,6 @@ public class MainRobot extends IterativeRobot {
         //CommandList.buttonDrive.start();
         CommandList.mecanumDrive.start();
         CommandList.controller.start();
-        //CommandList.autoAimSystem.start();
         //CommandList.accelerationMonitor.start();
         //CommandList.cock.start();
     }
