@@ -1,4 +1,4 @@
-//Controller: HC
+//Contributor: HC,JZ
 
 package team.sprocket.commands.shooter;
 
