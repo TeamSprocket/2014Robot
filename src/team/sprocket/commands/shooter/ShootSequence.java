@@ -1,4 +1,4 @@
-//Contributor: HC,JZ
+//Contributors: HC, JZ
 
 package team.sprocket.commands.shooter;
 
