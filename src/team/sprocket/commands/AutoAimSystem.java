@@ -7,6 +7,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class AutoAimSystem extends CommandBase {
     
     private double distance;
+    private double deadband = 0.02;
+    private double straightenSpeed = 0.4;
     private double currentArmPosition;
     private double targetArmPosition;
     private boolean done;
@@ -23,7 +25,9 @@ public class AutoAimSystem extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        distance = sensors.getDistance();
+        straighten();
+        
+        distance = sensors.getAveragePing();
         
         if(distance < 118 && distance > 60){
             arm.moveArmTo(4.28);
@@ -32,6 +36,21 @@ public class AutoAimSystem extends CommandBase {
             arm.moveArmTo(4.45);
         }
         done = true;
+    }
+    
+    private void straighten(){
+        double left = sensors.getLeftPing();
+        double right = sensors.getRightPing();
+        
+        while(Math.abs(left - right) > deadband){
+            if(left < right){
+                differentialDriveTrain.turnCounterclockwise(straightenSpeed);
+            }
+            if(left > right){
+                differentialDriveTrain.turnClockwise(straightenSpeed);
+            }
+        }
+        differentialDriveTrain.stop();
     }
     
     private void moveShooter(){

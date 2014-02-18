@@ -52,15 +52,22 @@ public class Sensors extends Subsystem {
     }
     
     //returns distance in inches
-    public double getDistance(){
-        double voltage = OI.u_ping.getVoltage();
+    public double getRightPing(){
+        double voltage = OI.u_rightPing.getVoltage();
         double distance = voltage / conversionFactor;
         
         return distance;
     }
     
-    public double getAngle(){
-        return OI.gy_gyro.getAngle() % 360;
+    public double getLeftPing(){
+        double voltage = OI.u_leftPing.getVoltage();
+        double distance = voltage / conversionFactor;
+        
+        return distance;
+    }
+    
+    public double getAveragePing(){
+        return (getRightPing() + getLeftPing()) / 2;
     }
     
     public double getAccelerationX(){

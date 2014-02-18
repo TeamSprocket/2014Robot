@@ -81,6 +81,18 @@ public class DifferentialDriveTrain extends Subsystem {
         rightSideForward();
     }
     
+    //sends Drive Train spinning clockwise
+    public void turnClockwise(double speed){
+        setRightSide(-speed);
+        setLeftSide(speed);
+    }
+    
+    //sends Drive Train spinning counterclockwise
+    public void turnCounterclockwise(double speed){
+        setRightSide(speed);
+        setLeftSide(-speed);
+    }
+    
     //stops Drive Train(){
     public void stop(){
         setRightSide(0);

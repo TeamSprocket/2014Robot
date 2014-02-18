@@ -15,6 +15,7 @@ public class Controller extends CommandBase {
     private double armspeed = 0.75;
     private double harvestspeed = 0.5;
     private double jy;
+    private Timer tim = new Timer();
     
     public Controller() {
         // Use requires() here to declare subsystem dependencies
@@ -32,10 +33,11 @@ public class Controller extends CommandBase {
     protected void execute() {
         //arm.advanceLatch();
         jy = getJoystickY();
-        SmartDashboard.putString("Distance: ", new Double(sensors.getDistance()).toString());
+        SmartDashboard.putString("Right Ping: ", new Double(sensors.getRightPing()).toString());
+        SmartDashboard.putString("Left Ping: ", new Double(sensors.getLeftPing()).toString());
+        SmartDashboard.putString("Average Ping: ", new Double(sensors.getAveragePing()).toString());
         SmartDashboard.putString("Pot Value: ", new Double(sensors.getArmPot()).toString());
         SmartDashboard.putBoolean("Cock Limit: ", sensors.cockLimit());
-        SmartDashboard.putString("Gyro Angle: ", new Double(sensors.getAngle()).toString());
         SmartDashboard.putBoolean("Latch A Limit: ", sensors.advanceLatchLimit());
         SmartDashboard.putBoolean("Latch W Limit: ", sensors.withdrawLatchLimit());
         SmartDashboard.putBoolean("Harvester Limit: ", sensors.harvesterLimit());
@@ -84,23 +86,36 @@ public class Controller extends CommandBase {
             arm.harvesterStop();
         }*/
             
-        if(getJoystick4() && !CommandList.autoAimSystem.isRunning()){
+        if(getJoystickTop() && !CommandList.autoAimSystem.isRunning()){
             CommandList.autoAimSystem.start();
         }
         
-        /*if(getJoystick5()){
-            if(!sensors.advanceLatchLimit()){
-                arm.advanceLatch();
-            }
-            //else arm.stopLatch();
+        if(getJoystick5()){
+            arm.withdrawLatch();
         }
-        else if(!CommandList.shoot.isRunning() && !CommandList.cock.isRunning() && !CommandList.shootSequence.isRunning()){
+        else if(!CommandList.shoot.isRunning() && !CommandList.cock.isRunning() && !CommandList.shootSequence.isRunning() && !getJoystick6()){
             arm.stopLatch();
-        }*/
+        }
         
         //Shoot Listener
-        if(getJoystickTop() && getJoystickBottom() && !CommandList.shootSequence.isRunning()){
+        if(getJoystick6() && getJoystick7() && !CommandList.shootSequence.isRunning() && !getJoystick10() && !getJoystick11()){
             CommandList.shootSequence.start();
+        }
+        
+        if(getJoystick6() && getJoystick7() && !CommandList.shootSequence.isRunning() && getJoystick10() && getJoystick11()){
+            CommandList.shoot.start();
+        }
+        
+        if((getJoystick10() || getJoystick11()) && !CommandList.shootSequence.isRunning() && !getJoystick6() && !getJoystick7()){
+            if(getJoystick10()){
+                arm.withdrawRack();
+            }
+            if(getJoystick11()){
+                arm.advanceRack();
+            }
+        }
+        else if(!CommandList.shoot.isRunning() && !CommandList.cock.isRunning() && !CommandList.shootSequence.isRunning()){
+            arm.stopRack();
         }
         
         //manual rack operation
@@ -111,6 +126,9 @@ public class Controller extends CommandBase {
             if(getJoystick7()){
                 if(!sensors.cockLimit()){
                     arm.withdrawRack();
+                }
+                else{
+                    arm.stopRack();
                 }
             }
             
@@ -128,7 +146,7 @@ public class Controller extends CommandBase {
                 arm.advanceLatch();
             }
         }
-        else if(!CommandList.shoot.isRunning() && !CommandList.cock.isRunning() && !CommandList.shootSequence.isRunning()){
+        else if(!CommandList.shoot.isRunning() && !CommandList.cock.isRunning() && !CommandList.shootSequence.isRunning() && !getJoystick5()){
             arm.stopLatch();
         }*/
         

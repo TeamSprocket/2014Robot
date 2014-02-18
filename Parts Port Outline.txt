@@ -13,14 +13,14 @@ Harvester Driver        (1,7)
 Arm Actuator            (1,8)
 Harvester Actuator      (1,9)
 
-Servos (digital module, PWM port)
-
 Analog Sensors (channel #)
-Gyroscope               (1)
-Front Ultrasonic        (2)
+Front Left Ultrasonic   (1)
+Front Right Ultrasonic  (2)
 Potentiometer           (3)
 
-
+Digital Outputs (digital module, digital IO port)
+Front Left Ultrasonic   (1,7)
+Front Right Ultrasonic  (1.8)
 
 Limit Switches (digital module, digital IO port)
 Rack Back               (1,1)

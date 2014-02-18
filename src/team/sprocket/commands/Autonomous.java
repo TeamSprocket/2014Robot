@@ -2,28 +2,37 @@
 
 package team.sprocket.commands;
 
-import edu.wpi.first.wpilibj.image.Image;
+import edu.wpi.first.wpilibj.Timer;
+import team.sprocket.main.CommandList;
 
 public class Autonomous extends CommandBase {
     
-    private Image image;
+    //private Image image;
     
     public Autonomous() {
-        requires(differentialDriveTrain);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        try{
+        /*try{
             image = sensors.getImage();
         }
         catch(Exception e){
             e.printStackTrace();
-        }
+        }*/
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+        while(sensors.getAveragePing() > 100){
+            differentialDriveTrain.allForward(0.5);
+        }
+        differentialDriveTrain.stop();
+        
+        CommandList.autoAimSystem.start();
+        Timer.delay(1);
+        CommandList.shootSequence.start();
+        
     }
 
     // Make this return true when this Command no longer needs to run execute()

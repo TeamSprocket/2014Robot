@@ -19,8 +19,7 @@ public class ButtonDrive extends CommandBase {
     }
 
     protected void execute() {
-        SmartDashboard.putNumber("Gyro Angle: ", sensors.getAngle());
-        SmartDashboard.putNumber("Distance: ", sensors.getDistance());
+        SmartDashboard.putNumber("Distance: ", sensors.getRightPing());
         if(OI.jb_GamepadA.get()){
             differentialDriveTrain.allBack(0.5);
             return;
@@ -41,11 +40,11 @@ public class ButtonDrive extends CommandBase {
     }
     
     private void goDistance(double inches){
-        initialDistance = sensors.getDistance();
+        initialDistance = sensors.getRightPing();
         currentDistance = initialDistance;
         while(initialDistance - currentDistance <= inches){
             differentialDriveTrain.allForward(0.5);
-            currentDistance = sensors.getDistance();
+            currentDistance = sensors.getRightPing();
         }
     }
 

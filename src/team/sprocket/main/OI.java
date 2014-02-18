@@ -48,8 +48,8 @@ public class OI {
     public static final ADXL345_I2C ac_main = new ADXL345_I2C(RobotMap.accelerometerDigitalModule, ADXL345_I2C.DataFormat_Range.k2G);
     public static final AxisCamera cm_axis = AxisCamera.getInstance();
     //public static final HiTechnicCompass co_compass = new HiTechnicCompass(1);
-    public static final Gyro gy_gyro = new Gyro(1);
-    public static final AnalogChannel u_ping = new AnalogChannel(2); //MaxBotix Ultrasonic Ping Sensor
+    public static final AnalogChannel u_leftPing = new AnalogChannel(1);
+    public static final AnalogChannel u_rightPing = new AnalogChannel(2); //MaxBotix Ultrasonic Ping Sensor
     public static final AnalogChannel p_Arm = new AnalogChannel(3);
     public static final DigitalInput ls_rackLimit = new DigitalInput(1,1);
     public static final DigitalInput ls_advanceLatchLimit = new DigitalInput(1,2);

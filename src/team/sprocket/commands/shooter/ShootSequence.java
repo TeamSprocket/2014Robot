@@ -3,6 +3,7 @@
 package team.sprocket.commands.shooter;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import team.sprocket.main.OI;
 
 public class ShootSequence extends CommandGroup {
     
