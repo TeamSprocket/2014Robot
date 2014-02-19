@@ -20,7 +20,6 @@ public class Shoot extends CommandBase {
     protected void execute() {
         raiseHarvester();
         unlatch();
-        CommandList.lowerHarvester.start();
         done = true;
     }
     

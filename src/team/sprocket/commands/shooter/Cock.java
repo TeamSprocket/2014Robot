@@ -4,6 +4,7 @@ package team.sprocket.commands.shooter;
 
 import edu.wpi.first.wpilibj.Timer;
 import team.sprocket.commands.CommandBase;
+import team.sprocket.main.CommandList;
 
 public class Cock extends CommandBase {
     
@@ -19,6 +20,7 @@ public class Cock extends CommandBase {
     }
 
     protected void execute() {
+        CommandList.lowerHarvester.start();
         while(!sensors.cockLimit()){
             unlatch();
             while(!sensors.cockLimit()){
