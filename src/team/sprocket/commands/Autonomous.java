@@ -24,7 +24,7 @@ public class Autonomous extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        while(sensors.getAveragePing() > 100){
+        while(sensors.getPingArray()[3] > 100){
             differentialDriveTrain.allForward(0.5);
         }
         differentialDriveTrain.stop();

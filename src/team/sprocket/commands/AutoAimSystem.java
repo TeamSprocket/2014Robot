@@ -27,7 +27,7 @@ public class AutoAimSystem extends CommandBase {
     protected void execute() {
         straighten();
         
-        distance = sensors.getAveragePing();
+        distance = sensors.getPingArray()[3];
         
         if(distance < 118 && distance > 60){
             arm.moveArmTo(4.28);
@@ -39,8 +39,8 @@ public class AutoAimSystem extends CommandBase {
     }
     
     private void straighten(){
-        double left = sensors.getLeftPing();
-        double right = sensors.getRightPing();
+        double left = sensors.getPingArray()[0];
+        double right = sensors.getPingArray()[1];
         
         while(Math.abs(left - right) > deadband){
             if(left < right){

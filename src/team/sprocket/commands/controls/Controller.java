@@ -24,6 +24,9 @@ public class Controller extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+        OI.rx_leftPing.set(false);
+        OI.rx_rightPing.set(false);
+        
         if(!sensors.advanceLatchLimit()){
             CommandList.cock.start();
         }
@@ -33,9 +36,9 @@ public class Controller extends CommandBase {
     protected void execute() {
         //arm.advanceLatch();
         jy = getJoystickY();
-        SmartDashboard.putString("Right Ping: ", new Double(sensors.getRightPing()).toString());
-        SmartDashboard.putString("Left Ping: ", new Double(sensors.getLeftPing()).toString());
-        SmartDashboard.putString("Average Ping: ", new Double(sensors.getAveragePing()).toString());
+        SmartDashboard.putString("Right Ping: ", new Double(sensors.getPingArray()[1]).toString());
+        SmartDashboard.putString("Left Ping: ", new Double(sensors.getPingArray()[0]).toString());
+        SmartDashboard.putString("Average Ping: ", new Double(sensors.getPingArray()[3]).toString());
         SmartDashboard.putString("Pot Value: ", new Double(sensors.getArmPot()).toString());
         SmartDashboard.putBoolean("Cock Limit: ", sensors.cockLimit());
         SmartDashboard.putBoolean("Latch A Limit: ", sensors.advanceLatchLimit());

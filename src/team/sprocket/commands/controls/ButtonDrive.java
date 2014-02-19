@@ -18,8 +18,7 @@ public class ButtonDrive extends CommandBase {
         //do nothing
     }
 
-    protected void execute() {
-        SmartDashboard.putNumber("Distance: ", sensors.getRightPing());
+    protected void execute(){
         if(OI.jb_GamepadA.get()){
             differentialDriveTrain.allBack(0.5);
             return;
@@ -40,11 +39,11 @@ public class ButtonDrive extends CommandBase {
     }
     
     private void goDistance(double inches){
-        initialDistance = sensors.getRightPing();
+        initialDistance = sensors.getPingArray()[3];
         currentDistance = initialDistance;
         while(initialDistance - currentDistance <= inches){
             differentialDriveTrain.allForward(0.5);
-            currentDistance = sensors.getRightPing();
+            currentDistance = sensors.getPingArray()[3];
         }
     }
 

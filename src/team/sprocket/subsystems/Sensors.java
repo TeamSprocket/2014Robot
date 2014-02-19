@@ -2,7 +2,9 @@
 
 package team.sprocket.subsystems;
 
+import com.sun.squawk.util.MathUtils;
 import edu.wpi.first.wpilibj.ADXL345_I2C;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.camera.AxisCameraException;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.image.Image;
@@ -12,6 +14,7 @@ import team.sprocket.main.OI;
 public class Sensors extends Subsystem {
     
     private final double conversionFactor = 0.0098;
+    private final double microseconds = MathUtils.pow(10, -6);
     
     public Image getImage()throws AxisCameraException, NIVisionException{
         return OI.cm_axis.getImage();
@@ -51,23 +54,36 @@ public class Sensors extends Subsystem {
         return OI.ls_armRaiseLimit.get();
     }
     
+    public double[] getPingArray(){
+        double[] distances = new double[3];
+        OI.rx_leftPing.set(true);
+        Timer.delay(50*microseconds);
+        distances[0] = getLeftPing();
+        OI.rx_leftPing.set(false);
+        
+        OI.rx_rightPing.set(true);
+        Timer.delay(50*microseconds);
+        distances[0] = getRightPing();
+        OI.rx_rightPing.set(false);
+        
+        distances[3] = (distances[0]+distances[1])/2;
+        
+        return distances;
+    }
+    
     //returns distance in inches
-    public double getRightPing(){
+    private double getRightPing(){
         double voltage = OI.u_rightPing.getVoltage();
         double distance = voltage / conversionFactor;
         
         return distance;
     }
     
-    public double getLeftPing(){
+    private double getLeftPing(){
         double voltage = OI.u_leftPing.getVoltage();
         double distance = voltage / conversionFactor;
         
         return distance;
-    }
-    
-    public double getAveragePing(){
-        return (getRightPing() + getLeftPing()) / 2;
     }
     
     public double getAccelerationX(){

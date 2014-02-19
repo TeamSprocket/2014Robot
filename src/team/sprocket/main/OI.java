@@ -5,7 +5,7 @@ package team.sprocket.main;
 import edu.wpi.first.wpilibj.ADXL345_I2C;
 import edu.wpi.first.wpilibj.AnalogChannel;
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.Gyro;
+import edu.wpi.first.wpilibj.DigitalOutput;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.camera.AxisCamera;
@@ -47,16 +47,19 @@ public class OI {
     
     public static final ADXL345_I2C ac_main = new ADXL345_I2C(RobotMap.accelerometerDigitalModule, ADXL345_I2C.DataFormat_Range.k2G);
     public static final AxisCamera cm_axis = AxisCamera.getInstance();
-    //public static final HiTechnicCompass co_compass = new HiTechnicCompass(1);
     public static final AnalogChannel u_leftPing = new AnalogChannel(1);
     public static final AnalogChannel u_rightPing = new AnalogChannel(2); //MaxBotix Ultrasonic Ping Sensor
     public static final AnalogChannel p_Arm = new AnalogChannel(3);
+    
     public static final DigitalInput ls_rackLimit = new DigitalInput(1,1);
     public static final DigitalInput ls_advanceLatchLimit = new DigitalInput(1,2);
     public static final DigitalInput ls_withdrawLatchLimit = new DigitalInput(1,3);
     public static final DigitalInput ls_harvesterRaiseLimit = new DigitalInput(1,4);
     public static final DigitalInput ls_armLowerLimit = new DigitalInput(1,5);
     public static final DigitalInput ls_armRaiseLimit = new DigitalInput(1,6);
+    
+    public static final DigitalOutput rx_leftPing = new DigitalOutput(1,7);
+    public static final DigitalOutput rx_rightPing = new DigitalOutput(1,8);
     
     //bill's comment!!!!!!
     
