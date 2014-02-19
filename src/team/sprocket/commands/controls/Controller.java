@@ -26,7 +26,7 @@ public class Controller extends CommandBase {
     protected void initialize() {
         OI.rx_RightPing.set(false);
         OI.rx_LeftPing.set(false);
-        if(!sensors.advanceLatchLimit()){
+        if(!sensors.advanceLatchLimit() && !getJoystickBottom()){
             CommandList.cock.start();
         }
     }
