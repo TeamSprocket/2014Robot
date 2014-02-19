@@ -18,7 +18,7 @@ public class ButtonDrive extends CommandBase {
         //do nothing
     }
 
-    protected void execute(){
+    protected void execute() {
         if(OI.jb_GamepadA.get()){
             differentialDriveTrain.allBack(0.5);
             return;
@@ -39,11 +39,11 @@ public class ButtonDrive extends CommandBase {
     }
     
     private void goDistance(double inches){
-        initialDistance = sensors.getPingArray()[3];
+        initialDistance = sensors.getPingArray()[2];
         currentDistance = initialDistance;
         while(initialDistance - currentDistance <= inches){
             differentialDriveTrain.allForward(0.5);
-            currentDistance = sensors.getPingArray()[3];
+            currentDistance = sensors.getPingArray()[2];
         }
     }
 

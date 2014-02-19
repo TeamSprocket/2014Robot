@@ -25,15 +25,15 @@ public class AutoAimSystem extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        straighten();
+        //straighten();
         
-        distance = sensors.getPingArray()[3];
+        distance = sensors.getPingArray()[2];
         
-        if(distance < 118 && distance > 60){
-            arm.moveArmTo(4.28);
+        if(distance < 95 && distance > 5){
+            arm.moveArmTo(4.38);
         }
-        else if(distance > 118.05 && distance < 128){
-            arm.moveArmTo(4.45);
+        else if(distance > 95.5 && distance < 128){
+            arm.moveArmTo(4.52);
         }
         done = true;
     }

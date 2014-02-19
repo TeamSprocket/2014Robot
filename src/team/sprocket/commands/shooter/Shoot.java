@@ -14,6 +14,7 @@ public class Shoot extends CommandBase {
     }
 
     protected void initialize() {
+        differentialDriveTrain.stop();
     }
 
     protected void execute() {

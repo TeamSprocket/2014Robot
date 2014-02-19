@@ -14,7 +14,7 @@ import team.sprocket.main.OI;
 public class Sensors extends Subsystem {
     
     private final double conversionFactor = 0.0098;
-    private final double microseconds = MathUtils.pow(10, -6);
+    private final double microsecond = 0.000001;
     
     public Image getImage()throws AxisCameraException, NIVisionException{
         return OI.cm_axis.getImage();
@@ -55,20 +55,25 @@ public class Sensors extends Subsystem {
     }
     
     public double[] getPingArray(){
-        double[] distances = new double[3];
-        OI.rx_leftPing.set(true);
-        Timer.delay(50*microseconds);
-        distances[0] = getLeftPing();
-        OI.rx_leftPing.set(false);
+        double[] arr = new double[3];
         
-        OI.rx_rightPing.set(true);
-        Timer.delay(50*microseconds);
-        distances[0] = getRightPing();
-        OI.rx_rightPing.set(false);
+        OI.rx_LeftPing.set(true);
+        Timer.delay(100*microsecond);
+        arr[0] = getLeftPing();
+        OI.rx_LeftPing.set(false);
         
-        distances[3] = (distances[0]+distances[1])/2;
+        Timer.delay(500*microsecond);
         
-        return distances;
+        OI.rx_RightPing.set(true);
+        Timer.delay(100*microsecond);
+        arr[1] = getRightPing();
+        OI.rx_RightPing.set(false);
+        
+        Timer.delay(100*microsecond);
+        
+        arr[2] = (arr[0] + arr[1])/2;
+        
+        return arr;
     }
     
     //returns distance in inches

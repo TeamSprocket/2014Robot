@@ -58,8 +58,8 @@ public class OI {
     public static final DigitalInput ls_armLowerLimit = new DigitalInput(1,5);
     public static final DigitalInput ls_armRaiseLimit = new DigitalInput(1,6);
     
-    public static final DigitalOutput rx_leftPing = new DigitalOutput(1,7);
-    public static final DigitalOutput rx_rightPing = new DigitalOutput(1,8);
+    public static final DigitalOutput rx_LeftPing = new DigitalOutput(1,7);
+    public static final DigitalOutput rx_RightPing = new DigitalOutput(1,8);
     
     //bill's comment!!!!!!
     
