@@ -1,0 +1,63 @@
+<xml version="1.0">
+<dashboard>
+	<widget field="Bearing: " type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="84"/>
+	</widget>
+	<widget field="Gyro Angle: " type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="63"/>
+	</widget>
+	<widget field="Distance: " type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="42"/>
+	</widget>
+	<widget field="Magnitude: " type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="21"/>
+	</widget>
+	<widget field="Turn" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="0"/>
+	</widget>
+	<widget field="Average Ping: " type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="427" y="347"/>
+		<width>251</width>
+	</widget>
+	<widget field="Left Ping: " type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="299" y="293"/>
+		<width>230</width>
+	</widget>
+	<widget field="Right Ping: " type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="543" y="292"/>
+		<width>225</width>
+	</widget>
+	<widget field="Arm Top Limit: " type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="506" y="220"/>
+	</widget>
+	<widget field="Arm Bottom Limit: " type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="488" y="181"/>
+	</widget>
+	<widget field="Harvester Limit: " type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="491" y="149"/>
+	</widget>
+	<widget field="Latch W Limit: " type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="494" y="112"/>
+	</widget>
+	<widget field="Latch A Limit: " type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="496" y="80"/>
+	</widget>
+	<widget field="Cock Limit: " type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="499" y="52"/>
+	</widget>
+	<widget field="Pot Value: " type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="724" y="347"/>
+		<width>286</width>
+	</widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.ConnectionIndicator">
+		<location x="48" y="334"/>
+		<property name="Graphics" value="Rounded"/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.ConnectionIndicator">
+		<location x="48" y="334"/>
+		<property name="Graphics" value="Rounded"/>
+	</static-widget>
+</dashboard>
+<live-window>
+</live-window>
+</xml>
