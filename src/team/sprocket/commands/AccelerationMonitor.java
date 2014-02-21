@@ -2,8 +2,6 @@
 
 package team.sprocket.commands;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 public class AccelerationMonitor extends CommandBase {
     
     private boolean stopped = true;

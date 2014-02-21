@@ -2,9 +2,7 @@
 
 package team.sprocket.commands;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import team.sprocket.main.CommandList;
-import team.sprocket.main.OI;
 
 //This is the command for self-regulating electronic braking system.
 //Class will be under constant modification and construction.

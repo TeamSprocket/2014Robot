@@ -5,7 +5,6 @@ package team.sprocket.subsystems;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import team.sprocket.main.RobotMap;
-import team.sprocket.commands.CommandBase;
 
 public class MecanumDriveTrain extends Subsystem {
     

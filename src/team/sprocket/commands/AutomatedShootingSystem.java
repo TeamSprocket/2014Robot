@@ -2,8 +2,6 @@
 
 package team.sprocket.commands;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 public class AutomatedShootingSystem extends CommandBase {
     
     private double distance;
