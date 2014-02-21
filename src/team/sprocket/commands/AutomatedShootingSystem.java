@@ -7,10 +7,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class AutomatedShootingSystem extends CommandBase {
     
     private double distance;
-    private double deadband = 0.02;
-    private double straightenSpeed = 0.4;
-    private double currentArmPosition;
-    private double targetArmPosition;
+    private double threshold = 95;
+    private double backwardPosition = 4.38;
+    private double forwardPosition = 4.52;
     private boolean done;
     
     public AutomatedShootingSystem() {
@@ -29,16 +28,16 @@ public class AutomatedShootingSystem extends CommandBase {
         
         distance = sensors.getPingArray()[2];
         
-        if(distance < 95 && distance > 20){
-            arm.moveArmTo(4.38);
+        if(distance < threshold && distance > 20){
+            arm.moveArmTo(backwardPosition);
         }
-        else if(distance > 95.5 && distance < 128){
-            arm.moveArmTo(4.52);
+        else if(distance > threshold && distance < 128){
+            arm.moveArmTo(forwardPosition);
         }
         done = true;
     }
     
-    private void straighten(){
+    /*private void straighten(){
         double left = sensors.getPingArray()[0];
         double right = sensors.getPingArray()[1];
         
@@ -51,12 +50,7 @@ public class AutomatedShootingSystem extends CommandBase {
             }
         }
         differentialDriveTrain.stop();
-    }
-    
-    private void moveShooter(){
-        arm.moveArmTo(targetArmPosition);
-    }
-    
+    }*/
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {

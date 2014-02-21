@@ -24,12 +24,6 @@ public class Sensors extends Subsystem {
         return OI.p_Arm.getVoltage();
     }
     
-    public double getArmAngle(){
-        double voltage = getArmPot();
-        double angle = 79.63644937*voltage;                             //formula to be implemented
-        return angle;
-    }
-    
     public boolean harvesterLimit(){
         return OI.ls_harvesterRaiseLimit.get();
     }
@@ -54,6 +48,9 @@ public class Sensors extends Subsystem {
         return OI.ls_armRaiseLimit.get();
     }
     
+    //arr[0] returns left proximity value
+    //arr[1] returns right proximity value
+    //arr[2] returns average proximity value
     public double[] getPingArray(){
         double[] arr = new double[3];
         
