@@ -86,8 +86,8 @@ public class Controller extends CommandBase {
             arm.harvesterStop();
         }*/
             
-        if(getJoystickTop() && !CommandList.autoAimSystem.isRunning()){
-            CommandList.autoAimSystem.start();
+        if(getJoystickTop() && !CommandList.automatedShootingSystem.isRunning()){
+            CommandList.automatedShootingSystem.start();
         }
         
         if(getJoystick5()){

@@ -46,8 +46,8 @@ public class MecanumDrive extends CommandBase {
             return;
         }
         if(rightOffCenter){
-            if(sensors.getArmPot() > 2.5){
-                turnCap = 0.75;
+            if(sensors.getArmPot() > 2){
+                turnCap = 0.5;
             }
             else{
                 turnCap = 1.0;

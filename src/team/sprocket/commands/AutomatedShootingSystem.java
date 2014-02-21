@@ -4,7 +4,7 @@ package team.sprocket.commands;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class AutoAimSystem extends CommandBase {
+public class AutomatedShootingSystem extends CommandBase {
     
     private double distance;
     private double deadband = 0.02;
@@ -13,7 +13,7 @@ public class AutoAimSystem extends CommandBase {
     private double targetArmPosition;
     private boolean done;
     
-    public AutoAimSystem() {
+    public AutomatedShootingSystem() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -29,7 +29,7 @@ public class AutoAimSystem extends CommandBase {
         
         distance = sensors.getPingArray()[2];
         
-        if(distance < 95 && distance > 5){
+        if(distance < 95 && distance > 20){
             arm.moveArmTo(4.38);
         }
         else if(distance > 95.5 && distance < 128){

@@ -6,9 +6,10 @@ package team.sprocket.main;
 
 import edu.wpi.first.wpilibj.command.Command;
 import team.sprocket.commands.AccelerationMonitor;
-import team.sprocket.commands.AutoAimSystem;
+import team.sprocket.commands.AutomatedShootingSystem;
 import team.sprocket.commands.Autonomous;
 import team.sprocket.commands.EBrake;
+import team.sprocket.commands.HotOrificeLocatingEntity;
 import team.sprocket.commands.controls.ButtonDrive;
 import team.sprocket.commands.controls.Controller;
 import team.sprocket.commands.controls.MecanumDrive;
@@ -36,7 +37,8 @@ public class CommandList {
     public static final Command controller = new Controller();
     public static final Command plant = new Plant();
     public static final Command shootSequence = new ShootSequence();
-    public static final Command autoAimSystem = new AutoAimSystem();
+    public static final Command automatedShootingSystem = new AutomatedShootingSystem();
+    public static final Command hotOrificeLocatingEntity = new HotOrificeLocatingEntity();
     public static final Command lowerHarvester = new LowerHarvester();
     public static final AccelerationMonitor accelerationMonitor = new AccelerationMonitor();
 
