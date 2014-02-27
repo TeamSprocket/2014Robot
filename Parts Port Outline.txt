@@ -20,7 +20,7 @@ Potentiometer           (3)
 
 Digital Outputs (digital module, digital IO port)
 Front Left Ultrasonic   (1,7)
-Front Right Ultrasonic  (1.8)
+Front Right Ultrasonic  (1,8)
 
 Limit Switches (digital module, digital IO port)
 Rack Back               (1,1)

@@ -3,6 +3,7 @@
 package team.sprocket.commands.shooter;
 
 import team.sprocket.commands.CommandBase;
+import team.sprocket.main.CommandList;
 
 public class Shoot extends CommandBase {
     
@@ -19,6 +20,7 @@ public class Shoot extends CommandBase {
     protected void execute() {
         raiseHarvester();
         unlatch();
+        CommandList.lowerHarvester.start();
         done = true;
     }
     

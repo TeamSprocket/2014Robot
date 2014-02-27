@@ -8,15 +8,49 @@ import edu.wpi.first.wpilibj.camera.AxisCameraException;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.image.Image;
 import edu.wpi.first.wpilibj.image.NIVisionException;
+import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import team.sprocket.main.OI;
 
 public class Sensors extends Subsystem {
     
     private final double conversionFactor = 0.0098;
     private final double microsecond = 0.000001;
+    private NetworkTable server = NetworkTable.getTable("SmartDasbhoard");
+    private boolean hot = false;
+    private Timer tim = new Timer();
     
-    public Image getImage()throws AxisCameraException, NIVisionException{
-        return OI.cm_axis.getImage();
+    public void setHot(boolean state){
+        hot = state;
+    }
+    
+    public void stopTimer(){
+        tim.stop();
+    }
+    
+    public void startTimer(){
+        tim.start();
+    }
+    
+    public void resetTimer(){
+        tim.reset();
+    }
+    
+    public double getTimer(){
+        return tim.get();
+    }
+    
+    public boolean getHot(){
+        return hot;
+    }
+    
+    public double getBlobCount(){
+        try{
+            return server.getNumber("BLOB_COUNT");
+        }
+        catch(Exception e){
+            System.out.println("Error");
+        }
+        return -1;
     }
     
     public double getArmPot(){
@@ -73,14 +107,14 @@ public class Sensors extends Subsystem {
     }
     
     //returns distance in inches
-    private double getRightPing(){
+    public double getRightPing(){
         double voltage = OI.u_rightPing.getVoltage();
         double distance = voltage / conversionFactor;
         
         return distance;
     }
     
-    private double getLeftPing(){
+    public double getLeftPing(){
         double voltage = OI.u_leftPing.getVoltage();
         double distance = voltage / conversionFactor;
         

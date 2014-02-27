@@ -20,7 +20,6 @@ public class Cock extends CommandBase {
     }
 
     protected void execute() {
-        CommandList.lowerHarvester.start();
         while(!sensors.cockLimit()){
             unlatch();
             while(!sensors.cockLimit()){
@@ -28,11 +27,10 @@ public class Cock extends CommandBase {
             }
         }
         latch();
-        //arm.stopRack();
+        arm.stopRack();
         arm.advanceRack();
         Timer.delay(rackTime);
         arm.stopRack();
-        lowerHarvester();
         done = true;
     }
     

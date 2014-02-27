@@ -52,7 +52,7 @@ public class Arm extends Subsystem {
     }
     
     public void withdrawRack(){
-        RobotMap.v_mainRackDriver.set(-1);
+        RobotMap.v_mainRackDriver.set(-0.8);
     }
     
     public void advanceRack(){

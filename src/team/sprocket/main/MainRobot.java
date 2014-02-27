@@ -35,6 +35,8 @@ public class MainRobot extends IterativeRobot {
     public void autonomousInit() {
         // schedule the autonomous command (example)
         CommandList.autonomous.start();
+        CommandBase.sensors.resetTimer();
+        CommandBase.sensors.startTimer();
     }
 
     /**
@@ -46,6 +48,8 @@ public class MainRobot extends IterativeRobot {
 
     public void teleopInit() {
         CommandList.autonomous.cancel();
+        CommandBase.sensors.stopTimer();
+        CommandBase.sensors.resetTimer();
         
         //CommandList.tusharDrive.start();
         //CommandList.tankDrive.start();

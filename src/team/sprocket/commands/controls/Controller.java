@@ -91,9 +91,7 @@ public class Controller extends CommandBase {
         }
         
         if(getJoystick5()){
-            SmartDashboard.putString("Right Ping: ", new Double(sensors.getPingArray()[1]).toString());
-            SmartDashboard.putString("Left Ping: ", new Double(sensors.getPingArray()[0]).toString());
-            SmartDashboard.putString("Average Ping: ", new Double(sensors.getPingArray()[2]).toString());
+            SmartDashboard.putString("LP: ", new Double(sensors.getLeftPing()).toString());
         }
         
         //Shoot Listener
@@ -105,17 +103,17 @@ public class Controller extends CommandBase {
             CommandList.shoot.start();
         }
         
-        if((getJoystick10() || getJoystick11()) && !CommandList.shootSequence.isRunning() && !getJoystick6() && !getJoystick7()){
+        /*if((getJoystick10() || getJoystick11()) && !CommandList.shootSequence.isRunning() && !getJoystick6() && !getJoystick7()){
             if(getJoystick10()){
                 arm.harvesterUp();
             }
             if(getJoystick11()){
-                arm.harvesterDown();
+                CommandList.lowerHarvester.start();
             }
         }
-        else if(!CommandList.shoot.isRunning() && !CommandList.cock.isRunning() && !CommandList.shootSequence.isRunning()){
+        else if(!CommandList.shoot.isRunning() && !CommandList.cock.isRunning() && !CommandList.shootSequence.isRunning() && !CommandList.lowerHarvester.isRunning()){
             arm.harvesterStop();
-        }
+        }/*
         
         //manual rack operation
         /*if(getJoystick6() || getJoystick7()){

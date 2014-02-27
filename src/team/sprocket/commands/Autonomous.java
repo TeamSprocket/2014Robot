@@ -5,9 +5,18 @@ package team.sprocket.commands;
 import edu.wpi.first.wpilibj.Timer;
 import team.sprocket.main.CommandList;
 
+/*
+
+I hereby invoke the spirit of innovation,
+the essence of ingenuity, and the scent of
+
+
+*/
+
 public class Autonomous extends CommandBase {
     
     //private Image image;
+    private final double safeArmPosition = 1;
     
     public Autonomous() {
     }
@@ -24,20 +33,24 @@ public class Autonomous extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        while(sensors.getPingArray()[2] > 100){
-            differentialDriveTrain.allForward(0.5);
+        
+        CommandList.hotOrificeLocatingEntity.start();             //get stuck here until hot is located
+        arm.moveArmTo(safeArmPosition);
+        
+        while(sensors.getLeftPing() > 120){
+            differentialDriveTrain.allForward(0.75);
         }
         differentialDriveTrain.stop();
         
+        //arm.moveArmTo(4.38);
         CommandList.automatedShootingSystem.start();
-        Timer.delay(1);
         CommandList.shootSequence.start();
         
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true
