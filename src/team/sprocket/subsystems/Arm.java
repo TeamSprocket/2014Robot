@@ -40,11 +40,11 @@ public class Arm extends Subsystem {
     }
     
     public void harvesterUp(){
-        RobotMap.v_harvesterActuator.set(1);
+        RobotMap.v_harvesterActuator.set(-1);
     }
     
     public void harvesterDown(){
-        RobotMap.v_harvesterActuator.set(-1);
+        RobotMap.v_harvesterActuator.set(1);
     }
     
     public void harvesterStop(){

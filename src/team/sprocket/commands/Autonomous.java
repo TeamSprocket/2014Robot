@@ -1,64 +1,32 @@
-//Contributors: HC
 
 package team.sprocket.commands;
 
-import edu.wpi.first.wpilibj.Timer;
-import team.sprocket.main.CommandList;
+import edu.wpi.first.wpilibj.command.CommandGroup;
+import team.sprocket.commands.shooter.ShootSequence;
 
-/*
-
-I hereby invoke the spirit of innovation,
-the essence of ingenuity, and the scent of
-
-
-*/
-
-public class Autonomous extends CommandBase {
-    
-    //private Image image;
-    private final double safeArmPosition = 1;
+public class Autonomous extends CommandGroup {
     
     public Autonomous() {
-    }
-
-    // Called just before this Command runs the first time
-    protected void initialize() {
-        /*try{
-            image = sensors.getImage();
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }*/
-    }
-
-    // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
         
-        CommandList.hotOrificeLocatingEntity.start();             //get stuck here until hot is located
-        arm.moveArmTo(safeArmPosition);
-        
-        while(sensors.getLeftPing() > 120){
-            differentialDriveTrain.allForward(0.75);
-        }
-        differentialDriveTrain.stop();
-        
-        //arm.moveArmTo(4.38);
-        CommandList.automatedShootingSystem.start();
-        CommandList.shootSequence.start();
-        
-    }
+        addSequential(new MoveForward());
+        addSequential(new HotOrificeLocatingEntity());
+        addSequential(new AutomatedShootingSystem());
+        addSequential(new ShootSequence());
 
-    // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
-        return true;
-    }
+        // Add Commands here:
+        // e.g. addSequential(new Command1());
+        //      addSequential(new Command2());
+        // these will run in order.
 
-    // Called once after isFinished returns true
-    protected void end() {
-    }
-
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
-    protected void interrupted() {
+        // To run multiple commands at the same time,
+        // use addParallel()
+        // e.g. addParallel(new Command1());
+        //      addSequential(new Command2());
+        // Command1 and Command2 will run in parallel.
+        // A command group will require all of the subsystems that each member
+        // would require.
+        // e.g. if Command1 requires chassis, and Command2 requires arm,
+        // a CommandGroup containing them would require both the chassis and the
+        // arm.
     }
 }

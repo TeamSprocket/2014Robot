@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import team.sprocket.commands.AccelerationMonitor;
 import team.sprocket.commands.AutomatedShootingSystem;
 import team.sprocket.commands.Autonomous;
+import team.sprocket.commands.MoveForward;
 import team.sprocket.commands.EBrake;
 import team.sprocket.commands.HotOrificeLocatingEntity;
 import team.sprocket.commands.controls.ButtonDrive;
@@ -26,6 +27,7 @@ import team.sprocket.commands.shooter.ShootSequence;
 public class CommandList {
     
     public static final Command buttonDrive = new ButtonDrive();
+    public static final Command moveForward = new MoveForward();
     public static final Command autonomous = new Autonomous();
     public static final Command tankDrive = new TankDrive();
     public static final Command tusharDrive = new TusharDrive();

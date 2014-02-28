@@ -24,12 +24,17 @@ public class HotOrificeLocatingEntity extends CommandBase {
         blobCount = sensors.getBlobCount();
         
         if(blobCount != -1){
-            if(blobCount > 1 || sensors.getTimer() > 5.25){
+            if(blobCount > 1){
                 SmartDashboard.putBoolean("Detect Hot: ", true);
                 done = true;
+                return;
             }
             else{
                 SmartDashboard.putBoolean("Detect Hot: ", false);
+            }
+            if(sensors.getTimer() > 1){
+                done = true;
+                return;
             }
         }
     }
