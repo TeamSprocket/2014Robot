@@ -43,6 +43,8 @@ public class Controller extends CommandBase {
         SmartDashboard.putBoolean("Harvester Limit: ", sensors.harvesterLimit());
         SmartDashboard.putBoolean("Arm Bottom Limit: ", sensors.armLowerLimit());
         SmartDashboard.putBoolean("Arm Top Limit: ", sensors.armRaiseLimit());
+        SmartDashboard.putString("LP: ", new Double(sensors.getLeftPing()).toString());
+        SmartDashboard.putString("BC: ", new Double(sensors.getBlobCount()).toString());
         
         
         //Harvest Listener
@@ -88,10 +90,6 @@ public class Controller extends CommandBase {
             
         if(getJoystickTop() && !CommandList.automatedShootingSystem.isRunning()){
             CommandList.automatedShootingSystem.start();
-        }
-        
-        if(getJoystick5()){
-            SmartDashboard.putString("LP: ", new Double(sensors.getLeftPing()).toString());
         }
         
         //Shoot Listener

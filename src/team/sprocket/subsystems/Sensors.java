@@ -15,7 +15,7 @@ public class Sensors extends Subsystem {
     
     private final double conversionFactor = 0.0098;
     private final double microsecond = 0.000001;
-    private NetworkTable server = NetworkTable.getTable("SmartDasbhoard");
+    private NetworkTable server = NetworkTable.getTable("SmartDashboard");
     private boolean hot = false;
     private Timer tim = new Timer();
     
