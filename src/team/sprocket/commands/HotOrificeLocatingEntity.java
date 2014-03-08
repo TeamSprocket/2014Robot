@@ -2,8 +2,8 @@
 
 package team.sprocket.commands;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import team.sprocket.main.CommandList;
 
 public class HotOrificeLocatingEntity extends CommandBase {
     
@@ -32,10 +32,15 @@ public class HotOrificeLocatingEntity extends CommandBase {
             else{
                 SmartDashboard.putBoolean("Detect Hot: ", false);
             }
-            if(sensors.getTimer() > 1){
+            /*if(sensors.getTimer() > 2){
+                Timer.delay(3.5);
                 done = true;
                 return;
-            }
+            }*/
+        }
+        else if(sensors.getTimer() > 5){
+            done = true;
+            return;
         }
     }
 

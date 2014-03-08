@@ -10,7 +10,7 @@ import team.sprocket.main.OI;
 
 public class MecanumDrive extends CommandBase {
     
-    private final double deadBand = 0.1;
+    private final double deadBand = 0.05;
     
     private double bearing;
     private double magnitude;
@@ -47,7 +47,7 @@ public class MecanumDrive extends CommandBase {
         }
         if(rightOffCenter){
             if(sensors.getArmPot() > 2){
-                turnCap = 0.5;
+                turnCap = 0.33;
             }
             else{
                 turnCap = 1.0;

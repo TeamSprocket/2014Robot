@@ -7,7 +7,7 @@ public class AutomatedShootingSystem extends CommandBase {
     private double distance;
     private double threshold = 95;
     private double backwardPosition = 4.38;
-    private double forwardPosition = 4.52;
+    private double forwardPosition = 4.53;
     private boolean done;
     
     public AutomatedShootingSystem() {
@@ -24,7 +24,7 @@ public class AutomatedShootingSystem extends CommandBase {
     protected void execute() {
         //straighten();
         
-        distance = sensors.getPingArray()[2];
+        distance = sensors.getLeftPing();
         
         if(distance < threshold && distance > 20){
             arm.moveArmTo(backwardPosition);
@@ -32,7 +32,15 @@ public class AutomatedShootingSystem extends CommandBase {
         else if(distance > threshold && distance < 128){
             arm.moveArmTo(forwardPosition);
         }
+        
         done = true;
+        /*else{
+            done = true;
+            return;
+        }
+        if((Math.abs(sensors.getArmPot() - forwardPosition) < 0.015) || (Math.abs(sensors.getArmPot() - backwardPosition) < 0.015)){
+            done = true;
+        }*/
     }
     
     /*private void straighten(){
@@ -52,7 +60,7 @@ public class AutomatedShootingSystem extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return done;
+        return true;
     }
 
     // Called once after isFinished returns true

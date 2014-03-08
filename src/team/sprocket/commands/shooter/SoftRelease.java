@@ -1,12 +1,14 @@
 
-package team.sprocket.commands;
+package team.sprocket.commands.shooter;
 
 import edu.wpi.first.wpilibj.Timer;
-import team.sprocket.main.CommandList;
+import team.sprocket.commands.CommandBase;
 
-public class Autonomous extends CommandBase {
+public class SoftRelease extends CommandBase {
     
-    public Autonomous() {
+    private final double rackTime = 0.4;
+    
+    public SoftRelease() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -17,10 +19,21 @@ public class Autonomous extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        CommandList.moveForward.start();
-        arm.moveArmTo(4.52);
-        CommandList.shootSequence.start();
+        arm.withdrawRack();
+        Timer.delay(rackTime);
+        arm.stopRack();
+        
+        unlatch();
+        arm.advanceRack();
+        Timer.delay(rackTime);
+        arm.stopRack();
+    }
     
+    private void unlatch(){
+        while(!sensors.withdrawLatchLimit()){
+            arm.advanceLatch();
+        }
+        arm.stopLatch();
     }
 
     // Make this return true when this Command no longer needs to run execute()

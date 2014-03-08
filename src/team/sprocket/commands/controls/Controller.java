@@ -12,7 +12,7 @@ import team.sprocket.main.OI;
 public class Controller extends CommandBase {
     
     private double deadband = 0.5;
-    private double armspeed = 0.75;
+    private double armspeed = 1;
     private double harvestspeed = 0.5;
     private double jy;
     private Timer tim = new Timer();
@@ -90,10 +90,6 @@ public class Controller extends CommandBase {
             CommandList.automatedShootingSystem.start();
         }
         
-        if(getJoystick5()){
-            SmartDashboard.putString("LP: ", new Double(sensors.getLeftPing()).toString());
-        }
-        
         //Shoot Listener
         if(getJoystick6() && getJoystick7() && !CommandList.shootSequence.isRunning() && !getJoystickBottom()){
             CommandList.shootSequence.start();
@@ -101,6 +97,31 @@ public class Controller extends CommandBase {
         
         if(getJoystick6() && getJoystick7() && !CommandList.shootSequence.isRunning() && getJoystickBottom()){
             CommandList.shoot.start();
+        }
+        
+        if(getJoystick10() || getJoystick11()){
+            /*if(getJoystick10() && getJoystick11()){
+                while(!sensors.harvesterLimit()){
+                    arm.harvesterUp();
+                }
+                arm.harvesterStop();
+                CommandList.lowerHarvester.start();
+            }*/
+            if(getJoystick10()){
+                /*while(!sensors.harvesterLimit()){
+                    arm.harvesterUp();
+                }
+                arm.harvesterStop();*/
+                arm.harvesterUp();
+            }
+            if(getJoystick11()){
+                //CommandList.lowerHarvester.start();
+                arm.harvesterDown();
+            }
+            
+        }
+        else{
+            arm.harvesterStop();
         }
         
         /*if((getJoystick10() || getJoystick11()) && !CommandList.shootSequence.isRunning() && !getJoystick6() && !getJoystick7()){
