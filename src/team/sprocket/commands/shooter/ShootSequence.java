@@ -3,6 +3,7 @@
 package team.sprocket.commands.shooter;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import team.sprocket.main.CommandList;
 
 public class ShootSequence extends CommandGroup {
     
@@ -26,4 +27,8 @@ public class ShootSequence extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     }
+
+    /*protected void interrupted(){
+        CommandList.shoot.cancel();
+    }*/
 }

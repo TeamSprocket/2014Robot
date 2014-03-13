@@ -7,7 +7,7 @@ public class AutomatedShootingSystem extends CommandBase {
     private double distance;
     private double threshold = 95;
     private double backwardPosition = 4.38;
-    private double forwardPosition = 4.53;
+    private double forwardPosition = 4.52;
     private boolean done;
     
     public AutomatedShootingSystem() {

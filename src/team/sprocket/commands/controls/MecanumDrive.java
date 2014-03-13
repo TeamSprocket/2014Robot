@@ -17,7 +17,6 @@ public class MecanumDrive extends CommandBase {
     private double jx, jy, jz;      //joystick axis values
     private boolean leftOffCenter = false;
     private boolean rightOffCenter = false;
-    private double turnCap;
     
     
     public MecanumDrive() {
@@ -46,13 +45,7 @@ public class MecanumDrive extends CommandBase {
             return;
         }
         if(rightOffCenter){
-            if(sensors.getArmPot() > 2){
-                turnCap = 0.33;
-            }
-            else{
-                turnCap = 1.0;
-            }
-            mecanumDriveTrain.turn(turnCap*getJoystickZ());
+            mecanumDriveTrain.turn(0.4*getJoystickZ());
         }
         else mecanumDriveTrain.stop();
   

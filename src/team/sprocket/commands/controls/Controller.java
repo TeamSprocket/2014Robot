@@ -100,18 +100,7 @@ public class Controller extends CommandBase {
         }
         
         if(getJoystick10() || getJoystick11()){
-            /*if(getJoystick10() && getJoystick11()){
-                while(!sensors.harvesterLimit()){
-                    arm.harvesterUp();
-                }
-                arm.harvesterStop();
-                CommandList.lowerHarvester.start();
-            }*/
             if(getJoystick10()){
-                /*while(!sensors.harvesterLimit()){
-                    arm.harvesterUp();
-                }
-                arm.harvesterStop();*/
                 arm.harvesterUp();
             }
             if(getJoystick11()){
@@ -123,6 +112,18 @@ public class Controller extends CommandBase {
         else{
             arm.harvesterStop();
         }
+        
+        if(getJoystick4()){
+            arm.moveArmTo(4.38);
+        }
+        
+        if(getJoystick5()){
+            arm.moveArmTo(4.52);
+        }
+        
+        /*if(getJoystick8() && getJoystick9()){
+            CommandList.shoot.cancel();
+        }*/
         
         /*if((getJoystick10() || getJoystick11()) && !CommandList.shootSequence.isRunning() && !getJoystick6() && !getJoystick7()){
             if(getJoystick10()){
