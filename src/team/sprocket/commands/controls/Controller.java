@@ -13,7 +13,7 @@ public class Controller extends CommandBase {
     
     private double deadband = 0.5;
     private double armspeed = 1;
-    private double harvestspeed = 0.5;
+    private double harvestspeed = 1;
     private double jy;
     private Timer tim = new Timer();
     
@@ -113,12 +113,12 @@ public class Controller extends CommandBase {
             arm.harvesterStop();
         }
         
-        if(getJoystick4()){
-            arm.moveArmTo(4.38);
+        if(getJoystick4() && !CommandList.moveArmToLowerPosition.isRunning()){
+            CommandList.moveArmToLowerPosition.start();
         }
         
-        if(getJoystick5()){
-            arm.moveArmTo(4.52);
+        if(getJoystick5() && !CommandList.moveArmToUpperPosition.isRunning()){
+            CommandList.moveArmToUpperPosition.start();
         }
         
         /*if(getJoystick8() && getJoystick9()){

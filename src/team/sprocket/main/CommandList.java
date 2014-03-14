@@ -19,6 +19,8 @@ import team.sprocket.commands.controls.TusharDrive;
 import team.sprocket.commands.shooter.Cock;
 import team.sprocket.commands.shooter.Harvest;
 import team.sprocket.commands.shooter.LowerHarvester;
+import team.sprocket.commands.shooter.MoveArmToLowerPosition;
+import team.sprocket.commands.shooter.MoveArmToUpperPosition;
 import team.sprocket.commands.shooter.Plant;
 import team.sprocket.commands.shooter.Shoot;
 import team.sprocket.commands.shooter.ShootSequence;
@@ -34,6 +36,8 @@ public class CommandList {
     public static final Command tusharDrive = new TusharDrive();
     public static final Command eBrake = new EBrake();
     public static final Command mecanumDrive = new MecanumDrive();
+    public static final Command moveArmToLowerPosition = new MoveArmToLowerPosition();
+    public static final Command moveArmToUpperPosition = new MoveArmToUpperPosition();
     public static final Command cock = new Cock();
     public static final Command shoot = new Shoot();
     public static final Command softRelease = new SoftRelease();

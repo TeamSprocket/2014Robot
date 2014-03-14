@@ -10,32 +10,36 @@ public class Shoot extends CommandBase {
     private boolean done = false;
     
     public Shoot() {
-
+        
     }
 
     protected void initialize() {
-        differentialDriveTrain.stop();
+        done = false;
     }
 
     protected void execute() {
-        raiseHarvester();
-        unlatch();
-        CommandList.lowerHarvester.start();
-        done = true;
+        if(!sensors.harvesterLimit()){
+            raiseHarvester();
+        }
+        if(sensors.harvesterLimit()){
+            arm.harvesterStop();
+            unlatch();
+            if(sensors.withdrawLatchLimit()){
+                arm.stopLatch();
+                
+                CommandList.lowerHarvester.start();
+                done = true;
+            }
+        }
+        
     }
     
     private void raiseHarvester(){
-        while(!sensors.harvesterLimit()){
-            arm.harvesterUp();
-        }
-        arm.harvesterStop();
+        arm.harvesterUp();
     }
     
     private void unlatch(){
-        while(!sensors.withdrawLatchLimit()){
-            arm.advanceLatch();
-        }
-        arm.stopLatch();
+        arm.advanceLatch();
     }
 
     protected boolean isFinished() {

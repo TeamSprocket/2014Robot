@@ -10,7 +10,6 @@ public class Cock extends CommandBase {
     
     private boolean done = false;
     private final double rackTime = 0.4;           //how long to run the motor to reset (advance) rack
-    private final double lowerTime = 0.25;         //how long to run motor to lower harvester
     //rme6ukvegqr
     
     public Cock() {
@@ -18,10 +17,36 @@ public class Cock extends CommandBase {
     }
 
     protected void initialize() {
+        done = false;
     }
 
     protected void execute() {
-        while(!sensors.cockLimit()){
+        if(!sensors.cockLimit()){
+            if(!sensors.withdrawLatchLimit()){
+                unlatch();
+            }
+            if(sensors.withdrawLatchLimit()){
+                arm.stopLatch();
+                arm.withdrawRack();
+            }
+        }
+        if(sensors.cockLimit()){
+            arm.stopRack();
+            if(sensors.withdrawLatchLimit()){
+                arm.advanceLatch();
+            }
+            if(sensors.advanceLatchLimit()){
+                arm.stopLatch();
+                arm.advanceRack();
+                Timer.delay(rackTime);
+                arm.stopRack();
+                done = true;
+            }
+        }
+        
+        
+        
+        /*while(!sensors.cockLimit()){
             unlatch();
             while(!sensors.cockLimit()){
                 arm.withdrawRack();
@@ -32,20 +57,11 @@ public class Cock extends CommandBase {
         arm.advanceRack();
         Timer.delay(rackTime);
         arm.stopRack();
-        done = true;
-    }
-    
-    private void lowerHarvester(){
-        arm.harvesterDown();
-        Timer.delay(lowerTime);
-        arm.harvesterStop();
+        done = true;*/
     }
     
     private void unlatch(){
-        while(!sensors.withdrawLatchLimit()){
-            arm.advanceLatch();
-        }
-        arm.stopLatch();
+        arm.advanceLatch();
     }
     
     private void latch(){
