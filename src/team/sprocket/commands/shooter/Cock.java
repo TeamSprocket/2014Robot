@@ -10,6 +10,7 @@ public class Cock extends CommandBase {
     
     private boolean done = false;
     private final double rackTime = 0.4;           //how long to run the motor to reset (advance) rack
+    private boolean cocked = false;
     //rme6ukvegqr
     
     public Cock() {
@@ -18,10 +19,11 @@ public class Cock extends CommandBase {
 
     protected void initialize() {
         done = false;
+        cocked = false;
     }
 
     protected void execute() {
-        if(!sensors.cockLimit()){
+        if(!sensors.cockLimit() && !cocked){
             if(!sensors.withdrawLatchLimit()){
                 unlatch();
             }
@@ -30,8 +32,8 @@ public class Cock extends CommandBase {
                 arm.withdrawRack();
             }
         }
-        if(sensors.cockLimit()){
-            
+        if(sensors.cockLimit() || cocked){
+            cocked = true;
             if(sensors.withdrawLatchLimit()){
                 arm.advanceLatch();
             }
