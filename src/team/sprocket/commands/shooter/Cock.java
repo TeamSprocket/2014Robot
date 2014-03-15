@@ -31,12 +31,14 @@ public class Cock extends CommandBase {
             }
         }
         if(sensors.cockLimit()){
-            arm.stopRack();
+            
             if(sensors.withdrawLatchLimit()){
                 arm.advanceLatch();
             }
             if(sensors.advanceLatchLimit()){
                 arm.stopLatch();
+                
+                arm.stopRack();
                 arm.advanceRack();
                 Timer.delay(rackTime);
                 arm.stopRack();

@@ -13,7 +13,7 @@ public class Controller extends CommandBase {
     
     private double deadband = 0.5;
     private double armspeed = 1;
-    private double harvestspeed = 1;
+    private double harvestspeed = 0.628;
     private double jy;
     private Timer tim = new Timer();
     
