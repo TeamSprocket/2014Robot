@@ -18,8 +18,12 @@ public class Autonomous extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         CommandList.moveForward.start();
-        CommandList.moveArmToLowerPosition.start();
+        CommandList.moveArmToUpperPosition.start();
         while(CommandList.moveForward.isRunning()){}
+        while(!sensors.harvesterLimit()){
+            arm.harvesterUp();
+        }
+        arm.harvesterStop();
         CommandList.shootSequence.start();
     
     }

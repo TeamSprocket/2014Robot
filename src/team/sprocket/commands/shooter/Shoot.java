@@ -18,18 +18,12 @@ public class Shoot extends CommandBase {
     }
 
     protected void execute() {
-        if(!sensors.harvesterLimit()){
-            raiseHarvester();
-        }
-        if(sensors.harvesterLimit()){
-            arm.harvesterStop();
+        if(sensors.advanceLatchLimit()){
             unlatch();
-            if(sensors.withdrawLatchLimit()){
-                arm.stopLatch();
-                
-                CommandList.lowerHarvester.start();
-                done = true;
-            }
+        }
+        if(sensors.withdrawLatchLimit()){
+            arm.stopLatch();
+            done = true;
         }
         
     }

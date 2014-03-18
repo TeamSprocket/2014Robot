@@ -13,7 +13,8 @@ public class Controller extends CommandBase {
     
     private double deadband = 0.5;
     private double armspeed = 1;
-    private double harvestspeed = 0.75;
+    private double modifiedArmspeed = 1;
+    private double harvestspeed = 0.6;
     private double jy;
     private Timer tim = new Timer();
     
@@ -35,6 +36,7 @@ public class Controller extends CommandBase {
     protected void execute() {
         //arm.advanceLatch();
         jy = getJoystickY();
+        modifiedArmspeed = 1;
         
         SmartDashboard.putString("Pot Value: ", new Double(sensors.getArmPot()).toString());
         SmartDashboard.putBoolean("Cock Limit: ", sensors.cockLimit());
@@ -86,9 +88,9 @@ public class Controller extends CommandBase {
             arm.harvesterStop();
         }*/
             
-        if(getJoystickTop() && !CommandList.automatedShootingSystem.isRunning()){
+        /*if(getJoystickTop() && !CommandList.automatedShootingSystem.isRunning()){
             CommandList.automatedShootingSystem.start();
-        }
+        }*/
         
         //Shoot Listener
         if(getJoystick6() && getJoystick7() && !CommandList.shootSequence.isRunning() && !getJoystickBottom()){
@@ -172,6 +174,11 @@ public class Controller extends CommandBase {
         //arm listener
         if(getJoystickTrigger() && Math.abs(jy) > deadband){
             //arm up listener
+            
+            if(sensors.getArmPot() < 0.75){
+                modifiedArmspeed = 0.75;
+            }
+            
             if(jy > 0){
                 if(!sensors.armRaiseLimit()){
                     arm.armUp(armspeed);
@@ -183,7 +190,7 @@ public class Controller extends CommandBase {
             //arm down listener
             if(jy < 0){
                 if(!sensors.armLowerLimit()){
-                    arm.armDown(armspeed);
+                    arm.armDown(modifiedArmspeed);
                 }
                 else{
                     arm.armStop();
@@ -192,6 +199,20 @@ public class Controller extends CommandBase {
             
         }
         else arm.armStop();
+        
+        if(getJoystickTop() && Math.abs(jy) > deadband){
+            //arm up listener
+            
+            if(jy > 0){
+                arm.harvesterUp();
+            }
+            //arm down listener
+            if(jy < 0){
+                arm.harvesterDown();
+            }
+            
+        }
+        else arm.harvesterStop();
     }
     
     private boolean getGamepadA(){
