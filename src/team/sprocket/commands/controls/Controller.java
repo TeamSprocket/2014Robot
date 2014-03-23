@@ -45,6 +45,8 @@ public class Controller extends CommandBase {
         SmartDashboard.putBoolean("Harvester Limit: ", sensors.harvesterLimit());
         SmartDashboard.putBoolean("Arm Bottom Limit: ", sensors.armLowerLimit());
         SmartDashboard.putBoolean("Arm Top Limit: ", sensors.armRaiseLimit());
+        SmartDashboard.putString("LP: ", new Double(sensors.getLeftPing()).toString());
+        SmartDashboard.putString("BC: ", new Double(sensors.getBlobCount()).toString());
         
         
         //Harvest Listener

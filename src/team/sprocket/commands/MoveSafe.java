@@ -1,12 +1,9 @@
 
 package team.sprocket.commands;
 
-import edu.wpi.first.wpilibj.command.CommandGroup;
-import team.sprocket.commands.shooter.ShootSequence;
-
-public class Autonomous extends CommandBase {
+public class MoveSafe extends CommandBase {
     
-    public Autonomous() {
+    public MoveSafe() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -17,15 +14,7 @@ public class Autonomous extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        CommandList.moveForward.start();
-        CommandList.moveArmToUpperPosition.start();
-        while(CommandList.moveForward.isRunning()){}
-        while(!sensors.harvesterLimit()){
-            arm.harvesterUp();
-        }
-        arm.harvesterStop();
-        CommandList.shootSequence.start();
-    
+        arm.moveArmTo(1.25);
     }
 
     // Make this return true when this Command no longer needs to run execute()
