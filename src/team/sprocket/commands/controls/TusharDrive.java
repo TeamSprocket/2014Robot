@@ -21,13 +21,13 @@ public class TusharDrive extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        if(OI.jb_RightGamepadThrottle.get()){
+        if(OI.jb_RightGamepad1Throttle.get()){
             updateValues();
             differentialDriveTrain.setLeftSide(leftPower);
             differentialDriveTrain.setRightSide(rightPower);
             return;
         }
-        if(OI.jb_LeftGamepadThrottle.get()){
+        if(OI.jb_LeftGamepad1Throttle.get()){
             updateValues();
             differentialDriveTrain.setLeftSide(-1*leftPower);
             differentialDriveTrain.setRightSide(-1*rightPower);
@@ -36,17 +36,17 @@ public class TusharDrive extends CommandBase {
     }
     
     private void updateValues(){
-        if(OI.jy_Gamepad.getAxis(Joystick.AxisType.kX) > 0){
-            leftPower = OI.jy_Gamepad.getAxis(Joystick.AxisType.kX);
+        if(OI.jy_Gamepad1.getAxis(Joystick.AxisType.kX) > 0){
+            leftPower = OI.jy_Gamepad1.getAxis(Joystick.AxisType.kX);
             rightPower = 1 - leftPower;
             return;
         }
-        if(OI.jy_Gamepad.getAxis(Joystick.AxisType.kX) < 0){
-            rightPower = -1* OI.jy_Gamepad.getAxis(Joystick.AxisType.kX);
+        if(OI.jy_Gamepad1.getAxis(Joystick.AxisType.kX) < 0){
+            rightPower = -1* OI.jy_Gamepad1.getAxis(Joystick.AxisType.kX);
             leftPower = 1 - rightPower;
             return;
         }
-        if(OI.jy_Gamepad.getAxis(Joystick.AxisType.kX) == 0){
+        if(OI.jy_Gamepad1.getAxis(Joystick.AxisType.kX) == 0){
             rightPower = 1;
             leftPower = 1;
         }

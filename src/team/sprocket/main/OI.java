@@ -18,24 +18,30 @@ import edu.wpi.first.wpilibj.camera.AxisCamera;
 
 public class OI {
     public static final Joystick jy_LeftAttack = new Joystick(RobotMap.leftJoystickUSBPort);
-    public static final Joystick jy_RightAttack = new Joystick(RobotMap.rightJoystickUSBPort);
-    public static final Joystick jy_Gamepad = new Joystick(RobotMap.gamepadUSBPort);
+    public static final Joystick jy_Gamepad2 = new Joystick(RobotMap.gamepad2USBPort);
+    public static final Joystick jy_Gamepad1 = new Joystick(RobotMap.gamepad1USBPort);
     
-    public static final JoystickButton jb_GamepadX = new JoystickButton(jy_Gamepad, 1);
-    public static final JoystickButton jb_GamepadA = new JoystickButton(jy_Gamepad, 2);
-    public static final JoystickButton jb_GamepadB = new JoystickButton(jy_Gamepad, 3);
-    public static final JoystickButton jb_GamepadY = new JoystickButton(jy_Gamepad, 4);
-    public static final JoystickButton jb_LeftGamepadTrigger = new JoystickButton(jy_Gamepad, 5);
-    public static final JoystickButton jb_RightGamepadTrigger = new JoystickButton(jy_Gamepad, 6);
-    public static final JoystickButton jb_LeftGamepadThrottle = new JoystickButton(jy_Gamepad, 7);
-    public static final JoystickButton jb_RightGamepadThrottle = new JoystickButton(jy_Gamepad, 8);
+    public static final JoystickButton jb_Gamepad1X = new JoystickButton(jy_Gamepad1, 1);
+    public static final JoystickButton jb_Gamepad1A = new JoystickButton(jy_Gamepad1, 2);
+    public static final JoystickButton jb_Gamepad1B = new JoystickButton(jy_Gamepad1, 3);
+    public static final JoystickButton jb_Gamepad1Y = new JoystickButton(jy_Gamepad1, 4);
+    public static final JoystickButton jb_LeftGamepad1Trigger = new JoystickButton(jy_Gamepad1, 5);
+    public static final JoystickButton jb_RightGamepad1Trigger = new JoystickButton(jy_Gamepad1, 6);
+    public static final JoystickButton jb_LeftGamepad1Throttle = new JoystickButton(jy_Gamepad1, 7);
+    public static final JoystickButton jb_RightGamepad1Throttle = new JoystickButton(jy_Gamepad1, 8);
+    
+    public static final JoystickButton jb_Gamepad2X = new JoystickButton(jy_Gamepad2, 1);
+    public static final JoystickButton jb_Gamepad2A = new JoystickButton(jy_Gamepad2, 2);
+    public static final JoystickButton jb_Gamepad2B = new JoystickButton(jy_Gamepad2, 3);
+    public static final JoystickButton jb_Gamepad2Y = new JoystickButton(jy_Gamepad2, 4);
+    public static final JoystickButton jb_LeftGamepad2Trigger = new JoystickButton(jy_Gamepad2, 5);
+    public static final JoystickButton jb_RightGamepad2Trigger = new JoystickButton(jy_Gamepad2, 6);
+    public static final JoystickButton jb_LeftGamepad2Throttle = new JoystickButton(jy_Gamepad2, 7);
+    public static final JoystickButton jb_RightGamepad2Throttle = new JoystickButton(jy_Gamepad2, 8);
     
     public static final JoystickButton jb_LeftAttackTrigger = new JoystickButton(jy_LeftAttack, 1);
-    public static final JoystickButton jb_RightAttackTrigger = new JoystickButton(jy_RightAttack, 1);
     public static final JoystickButton jb_LeftAttackBottom = new JoystickButton(jy_LeftAttack, 2);
-    public static final JoystickButton jb_RightAttackBottom = new JoystickButton(jy_RightAttack, 2);
     public static final JoystickButton jb_LeftAttackTop = new JoystickButton(jy_LeftAttack, 3);
-    public static final JoystickButton jb_RightAttackTop = new JoystickButton(jy_RightAttack, 3);
     public static final JoystickButton jb_LeftAttack4 = new JoystickButton(jy_LeftAttack, 4);
     public static final JoystickButton jb_LeftAttack5 = new JoystickButton(jy_LeftAttack, 5);
     public static final JoystickButton jb_LeftAttack6 = new JoystickButton(jy_LeftAttack, 6);

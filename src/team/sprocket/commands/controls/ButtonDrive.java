@@ -18,19 +18,19 @@ public class ButtonDrive extends CommandBase {
     }
 
     protected void execute() {
-        if(OI.jb_GamepadA.get()){
+        if(OI.jb_Gamepad1A.get()){
             differentialDriveTrain.allBack(0.5);
             return;
         }
-        if(OI.jb_GamepadB.get()){
+        if(OI.jb_Gamepad1B.get()){
             differentialDriveTrain.turnClockwise();
             return;
         }
-        if(OI.jb_GamepadX.get()){
+        if(OI.jb_Gamepad1X.get()){
             differentialDriveTrain.turnCounterclockwise();
             return;
         }
-        if(OI.jb_GamepadY.get()){
+        if(OI.jb_Gamepad1Y.get()){
             differentialDriveTrain.allForward(0.5);
             return;
         }

@@ -36,9 +36,9 @@ public class RobotMap {
     public static final int harvesterActuatorMotorPort      = 9;
     
     //USB Port # for Interface Devices
-    public static final int leftJoystickUSBPort             = 1;
-    public static final int rightJoystickUSBPort            = 2;
-    public static final int gamepadUSBPort                  = 3;
+    public static final int leftJoystickUSBPort             = 3;
+    public static final int gamepad2USBPort                 = 2;
+    public static final int gamepad1USBPort                 = 1;
     
     //Port Information for Sensors
     public static final int accelerometerDigitalModule      = 1;

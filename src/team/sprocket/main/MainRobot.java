@@ -50,14 +50,9 @@ public class MainRobot extends IterativeRobot {
         CommandList.autonomous.cancel();
         CommandBase.sensors.stopTimer();
         CommandBase.sensors.resetTimer();
-        
-        //CommandList.tusharDrive.start();
-        //CommandList.tankDrive.start();
-        //CommandList.buttonDrive.start();
+
         CommandList.mecanumDrive.start();
-        CommandList.controller.start();
-        //CommandList.accelerationMonitor.start();
-        //CommandList.cock.start();
+        CommandList.controller1.start();
     }
 
     public void teleopPeriodic() {

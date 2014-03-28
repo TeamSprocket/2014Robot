@@ -17,13 +17,13 @@ public class TankDrive extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        if(OI.jb_LeftAttackTrigger.get()){
+        /*if(OI.jb_LeftAttackTrigger.get()){
             differentialDriveTrain.setLeftSide(OI.jy_LeftAttack.getY());
         }
         if(OI.jb_RightAttackTrigger.get()){
             differentialDriveTrain.setRightSide(OI.jy_RightAttack.getY());
         }
-        else differentialDriveTrain.stop();
+        else differentialDriveTrain.stop();*/
     }
 
     // Make this return true when this Command no longer needs to run execute()

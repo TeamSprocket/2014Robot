@@ -47,7 +47,9 @@ public class MecanumDrive extends CommandBase {
         if(rightOffCenter){
             mecanumDriveTrain.turn(0.3*getJoystickZ());
         }
-        else mecanumDriveTrain.stop();
+        else{
+            mecanumDriveTrain.stop();
+        }
   
     }
     
@@ -73,14 +75,14 @@ public class MecanumDrive extends CommandBase {
     }
     
     private double getJoystickX(){
-        return OI.jy_Gamepad.getAxis(Joystick.AxisType.kX);
+        return OI.jy_Gamepad1.getAxis(Joystick.AxisType.kX);
     }
     private double getJoystickY(){
-        return OI.jy_Gamepad.getAxis(Joystick.AxisType.kY);
+        return OI.jy_Gamepad1.getAxis(Joystick.AxisType.kY);
     }
     
     private double getJoystickZ(){
-        return OI.jy_Gamepad.getAxis(Joystick.AxisType.kZ);
+        return OI.jy_Gamepad1.getAxis(Joystick.AxisType.kZ);
     }
 
     // Make this return true when this Command no longer needs to run execute()

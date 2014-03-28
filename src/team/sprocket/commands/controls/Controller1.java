@@ -9,16 +9,15 @@ import team.sprocket.commands.CommandBase;
 import team.sprocket.main.CommandList;
 import team.sprocket.main.OI;
 
-public class Controller extends CommandBase {
+public class Controller1 extends CommandBase {
     
     private double deadband = 0.5;
     private double armspeed = 1;
     private double modifiedArmspeed = 1;
     private double harvestspeed = 0.6;
     private double jy;
-    private Timer tim = new Timer();
     
-    public Controller() {
+    public Controller1() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -124,20 +123,12 @@ public class Controller extends CommandBase {
         }
     }
     
-    private boolean getGamepadA(){
-        return OI.jb_GamepadA.get();
-    }
-    
-    private boolean getGamepadY(){
-        return OI.jb_GamepadY.get();
-    }
-    
     private boolean getGamepadLT(){
-        return OI.jb_LeftGamepadTrigger.get();
+        return OI.jb_LeftGamepad1Trigger.get();
     }
     
     private boolean getGamepadRT(){
-        return OI.jb_RightGamepadTrigger.get();
+        return OI.jb_RightGamepad1Trigger.get();
     }
     
     private double getJoystickY(){
