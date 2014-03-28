@@ -103,20 +103,6 @@ public class Controller extends CommandBase {
             CommandList.shoot.start();
         }
         
-        if(getJoystick10() || getJoystick11()){
-            if(getJoystick10()){
-                arm.harvesterUp();
-            }
-            if(getJoystick11()){
-                //CommandList.lowerHarvester.start();
-                arm.harvesterDown();
-            }
-            
-        }
-        else{
-            arm.harvesterStop();
-        }
-        
         if(getJoystick4() && !CommandList.moveArmToLowerPosition.isRunning()){
             CommandList.moveArmToLowerPosition.start();
         }
@@ -178,7 +164,7 @@ public class Controller extends CommandBase {
             //arm up listener
             
             if(sensors.getArmPot() < 0.75){
-                modifiedArmspeed = 0.75;
+                modifiedArmspeed = 0.33;
             }
             
             if(jy > 0){
@@ -202,17 +188,13 @@ public class Controller extends CommandBase {
         }
         else arm.armStop();
         
-        if(getJoystickTop() && Math.abs(jy) > deadband){
-            //arm up listener
-            
-            if(jy > 0){
-                arm.harvesterUp();
-            }
-            //arm down listener
-            if(jy < 0){
+        if(getJoystickTop() || getJoystickBottom()){
+            if(getJoystickTop()){
                 arm.harvesterDown();
             }
-            
+            if(getJoystickBottom()){
+                arm.harvesterUp();
+            }
         }
         else arm.harvesterStop();
     }

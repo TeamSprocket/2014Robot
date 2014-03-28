@@ -1,8 +1,7 @@
 
 package team.sprocket.commands;
 
-import edu.wpi.first.wpilibj.command.CommandGroup;
-import team.sprocket.commands.shooter.ShootSequence;
+import team.sprocket.main.CommandList;
 
 public class Autonomous extends CommandBase {
     
