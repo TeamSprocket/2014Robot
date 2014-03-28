@@ -3,6 +3,7 @@
 package team.sprocket.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import team.sprocket.main.CommandList;
 import team.sprocket.main.OI;
 import team.sprocket.subsystems.Arm;
 import team.sprocket.subsystems.DifferentialDriveTrain;
@@ -18,6 +19,7 @@ import team.sprocket.subsystems.Sensors;
 public abstract class CommandBase extends Command {
 
     public static OI oi;
+    public static CommandList commandList;
     // Create a single static instance of all of your subsystems
     public static DifferentialDriveTrain differentialDriveTrain = new DifferentialDriveTrain();
     public static MecanumDriveTrain mecanumDriveTrain = new MecanumDriveTrain();
@@ -31,6 +33,7 @@ public abstract class CommandBase extends Command {
         // yet. Thus, their requires() statements may grab null pointers. Bad
         // news. Don't move it.
         oi = new OI();
+        //commandList = new CommandList();
 
         // Show what command your subsystem is running on the SmartDashboard
         //SmartDashboard.putData(exampleSubsystem);
