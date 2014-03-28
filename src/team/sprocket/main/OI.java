@@ -57,9 +57,10 @@ public class OI {
     public static final DigitalInput ls_harvesterRaiseLimit = new DigitalInput(1,4);
     public static final DigitalInput ls_armLowerLimit = new DigitalInput(1,5);
     public static final DigitalInput ls_armRaiseLimit = new DigitalInput(1,6);
+    public static final DigitalInput ls_harvesterLowerLimit = new DigitalInput(1,7);
     
-    public static final DigitalOutput rx_LeftPing = new DigitalOutput(1,7);
-    public static final DigitalOutput rx_RightPing = new DigitalOutput(1,8);
+    public static final DigitalOutput rx_LeftPing = new DigitalOutput(1,8);
+    public static final DigitalOutput rx_RightPing = new DigitalOutput(1,9);
     
     //bill's comment!!!!!!
     

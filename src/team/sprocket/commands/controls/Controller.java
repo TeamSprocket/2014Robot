@@ -13,7 +13,8 @@ public class Controller extends CommandBase {
     
     private double deadband = 0.5;
     private double armspeed = 1;
-    private double modifiedArmspeed = 1;
+    private double modifiedUpSpeed = 1;
+    private double modifiedDownSpeed = 1;
     private double harvestspeed = 0.6;
     private double jy;
     private Timer tim = new Timer();
@@ -36,13 +37,14 @@ public class Controller extends CommandBase {
     protected void execute() {
         //arm.advanceLatch();
         jy = getJoystickY();
-        modifiedArmspeed = 1;
+        modifiedUpSpeed = 1;
+        modifiedDownSpeed = 1;
         
         SmartDashboard.putString("Pot Value: ", new Double(sensors.getArmPot()).toString());
         SmartDashboard.putBoolean("Cock Limit: ", sensors.cockLimit());
         SmartDashboard.putBoolean("Latch A Limit: ", sensors.advanceLatchLimit());
         SmartDashboard.putBoolean("Latch W Limit: ", sensors.withdrawLatchLimit());
-        SmartDashboard.putBoolean("Harvester Limit: ", sensors.harvesterLimit());
+        SmartDashboard.putBoolean("Harvester Limit: ", sensors.harvesterRaiseLimit());
         SmartDashboard.putBoolean("Arm Bottom Limit: ", sensors.armLowerLimit());
         SmartDashboard.putBoolean("Arm Top Limit: ", sensors.armRaiseLimit());
         SmartDashboard.putString("LP: ", new Double(sensors.getLeftPing()).toString());
@@ -76,7 +78,7 @@ public class Controller extends CommandBase {
         
         /*if(getJoystickBottom() || getJoystickTop()){
             if(getJoystickBottom()){
-                if(!sensors.harvesterLimit()){
+                if(!sensors.harvesterRaiseLimit()){
                     arm.harvesterUp();
                 }
             }
@@ -164,12 +166,16 @@ public class Controller extends CommandBase {
             //arm up listener
             
             if(sensors.getArmPot() < 0.75){
-                modifiedArmspeed = 0.33;
+                modifiedDownSpeed = 0.33;
+            }
+            
+            if(sensors.getArmPot() > 4.5){
+                modifiedUpSpeed = 0.33;
             }
             
             if(jy > 0){
                 if(!sensors.armRaiseLimit()){
-                    arm.armUp(armspeed);
+                    arm.armUp(modifiedUpSpeed);
                 }
                 else{
                     arm.armStop();
@@ -178,7 +184,7 @@ public class Controller extends CommandBase {
             //arm down listener
             if(jy < 0){
                 if(!sensors.armLowerLimit()){
-                    arm.armDown(modifiedArmspeed);
+                    arm.armDown(modifiedDownSpeed);
                 }
                 else{
                     arm.armStop();
@@ -189,12 +195,13 @@ public class Controller extends CommandBase {
         else arm.armStop();
         
         if(getJoystickTop() || getJoystickBottom()){
-            if(getJoystickTop()){
+            if(getJoystickTop() && !sensors.harvesterLowerLimit()){
                 arm.harvesterDown();
             }
-            if(getJoystickBottom()){
+            else if(getJoystickBottom() && !sensors.harvesterRaiseLimit()){
                 arm.harvesterUp();
             }
+            else arm.harvesterStop();
         }
         else arm.harvesterStop();
     }

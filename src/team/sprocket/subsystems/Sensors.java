@@ -57,8 +57,12 @@ public class Sensors extends Subsystem {
         return OI.p_Arm.getVoltage();
     }
     
-    public boolean harvesterLimit(){
+    public boolean harvesterRaiseLimit(){
         return OI.ls_harvesterRaiseLimit.get();
+    }
+    
+    public boolean harvesterLowerLimit(){
+        return OI.ls_harvesterLowerLimit.get();
     }
     
     public boolean cockLimit(){

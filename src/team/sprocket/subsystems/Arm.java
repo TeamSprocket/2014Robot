@@ -9,12 +9,19 @@ import team.sprocket.main.RobotMap;
 public class Arm extends Subsystem {
     
     public void moveArmTo(double position){
+        double speed = 1;
+        
         if(Math.abs(CommandBase.sensors.getArmPot() - position) > 0.015){
+            
+            if(Math.abs(CommandBase.sensors.getArmPot() - position) < 0.75){
+                speed = 0.33;
+            }
+            
             if(CommandBase.sensors.getArmPot() < position){
-                armUp();
+                armUp(speed);
             }
             else{
-                armDown();
+                armDown(speed);
             }
         }
         else{
