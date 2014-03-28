@@ -42,7 +42,8 @@ public class Controller extends CommandBase {
         SmartDashboard.putBoolean("Cock Limit: ", sensors.cockLimit());
         SmartDashboard.putBoolean("Latch A Limit: ", sensors.advanceLatchLimit());
         SmartDashboard.putBoolean("Latch W Limit: ", sensors.withdrawLatchLimit());
-        SmartDashboard.putBoolean("Harvester Limit: ", sensors.harvesterLimit());
+        SmartDashboard.putBoolean("Harvester Raise Limit: ", sensors.harvesterRaiseLimit());
+        SmartDashboard.putBoolean("Harvester Lower Limit: ", sensors.harvesterLowerLimit());
         SmartDashboard.putBoolean("Arm Bottom Limit: ", sensors.armLowerLimit());
         SmartDashboard.putBoolean("Arm Top Limit: ", sensors.armRaiseLimit());
         SmartDashboard.putString("LP: ", new Double(sensors.getLeftPing()).toString());
@@ -58,7 +59,9 @@ public class Controller extends CommandBase {
                 arm.rollOut(harvestspeed);              //Plant
             }
         }
-        else arm.rollStop();
+        else{
+            arm.rollStop();
+        }
         
         //Shoot Listener
         if(getJoystick6() && getJoystick7() && !CommandList.shootSequence.isRunning() && !getJoystickBottom()){
@@ -104,17 +107,21 @@ public class Controller extends CommandBase {
             }
             
         }
-        else arm.armStop();
+        else{
+            arm.armStop();
+        }
         
         if(getJoystickTop() || getJoystickBottom()){
-            if(getJoystickTop()){
+            if(getJoystickTop() && !sensors.harvesterLowerLimit()){
                 arm.harvesterDown();
             }
-            if(getJoystickBottom()){
+            if(getJoystickBottom() && !sensors.harvesterRaiseLimit()){
                 arm.harvesterUp();
             }
         }
-        else arm.harvesterStop();
+        else{
+            arm.harvesterStop();
+        }
     }
     
     private boolean getGamepadA(){

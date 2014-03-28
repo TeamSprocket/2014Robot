@@ -3,7 +3,6 @@
 package team.sprocket.commands.shooter;
 
 import team.sprocket.commands.CommandBase;
-import team.sprocket.main.CommandList;
 
 public class Shoot extends CommandBase {
     

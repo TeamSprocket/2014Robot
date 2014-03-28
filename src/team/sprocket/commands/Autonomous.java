@@ -19,7 +19,7 @@ public class Autonomous extends CommandBase {
         CommandList.moveForward.start();
         CommandList.moveArmToUpperPosition.start();
         while(CommandList.moveForward.isRunning()){}
-        while(!sensors.harvesterLimit()){
+        while(!sensors.harvesterRaiseLimit()){
             arm.harvesterUp();
         }
         arm.harvesterStop();
