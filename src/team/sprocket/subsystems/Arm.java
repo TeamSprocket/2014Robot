@@ -13,7 +13,7 @@ public class Arm extends Subsystem {
         
         if(Math.abs(CommandBase.sensors.getArmPot() - position) > 0.015){
             
-            if(Math.abs(CommandBase.sensors.getArmPot() - position) < 0.75){
+            if(Math.abs(CommandBase.sensors.getArmPot() - position) < 1){
                 speed = 0.33;
             }
             

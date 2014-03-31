@@ -165,7 +165,7 @@ public class Controller extends CommandBase {
         if(getJoystickTrigger() && Math.abs(jy) > deadband){
             //arm up listener
             
-            if(sensors.getArmPot() < 0.75){
+            if(sensors.getArmPot() < 0.5){
                 modifiedDownSpeed = 0.33;
             }
             

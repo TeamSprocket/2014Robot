@@ -39,10 +39,10 @@ public class MoveForward extends CommandBase {
         }
         differentialDriveTrain.stop();*/
         
-        differentialDriveTrain.allForward(0.7);
-        Timer.delay(1.15);
+        differentialDriveTrain.allForward(0.5);
+        Timer.delay(1.5);
         differentialDriveTrain.stop();
-        Timer.delay(0.25);
+        Timer.delay(0.2);
         
     }
 
