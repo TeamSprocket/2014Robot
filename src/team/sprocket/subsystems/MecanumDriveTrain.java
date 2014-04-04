@@ -103,6 +103,7 @@ public class MecanumDriveTrain extends Subsystem {
     }
     
     private void turn(){
+        turn *= 0.68;
         if(turn < -0.1){
             frontLeftMag -= Math.abs(turn);
             backLeftMag -= Math.abs(turn);

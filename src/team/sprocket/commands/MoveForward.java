@@ -3,7 +3,7 @@
 package team.sprocket.commands;
 
 import edu.wpi.first.wpilibj.Timer;
-import team.sprocket.main.CommandList;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /*
 
@@ -16,34 +16,28 @@ the essence of ingenuity, and the scent of
 public class MoveForward extends CommandBase {
     
     //private Image image;
-    private final double safeArmPosition = 1;
+    private boolean done;
+    private double blobCount;
+    private boolean finished;
+    private boolean five;
     
     public MoveForward() {
+        
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        /*try{
-            image = sensors.getImage();
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }*/
+        done = false;
+        finished = false;
+        five = false;
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
-        
-        /*while(sensors.getLeftPing() > 120){
-            differentialDriveTrain.allForward(0.75);
-        }
-        differentialDriveTrain.stop();*/
-        
+    protected void execute(){
         differentialDriveTrain.allForward(0.5);
         Timer.delay(1.5);
         differentialDriveTrain.stop();
-        Timer.delay(0.2);
-        
+        Timer.delay(0.25);
     }
 
     // Make this return true when this Command no longer needs to run execute()
