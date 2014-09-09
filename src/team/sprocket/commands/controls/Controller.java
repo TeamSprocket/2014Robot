@@ -104,12 +104,8 @@ public class Controller extends CommandBase {
             CommandList.shoot.start();
         }
         
-        if(getJoystick4() && !CommandList.moveArmToLowerPosition.isRunning()){
+        if(getJoystick5() && !CommandList.moveArmToLowerPosition.isRunning()){
             CommandList.moveArmToLowerPosition.start();
-        }
-        
-        if(getJoystick5() && !CommandList.moveArmToUpperPosition.isRunning()){
-            CommandList.moveArmToUpperPosition.start();
         }
         
         /*if(getJoystick8() && getJoystick9()){
@@ -168,8 +164,8 @@ public class Controller extends CommandBase {
                 modifiedDownSpeed = 0.33;
             }
             
-            if(sensors.getArmPot() > 4.5){
-                modifiedUpSpeed = 0.33;
+            if(sensors.getArmPot() > 4.7){
+                modifiedUpSpeed = 0.68;
             }
             
             if(jy > 0){

@@ -1,6 +1,7 @@
 
 package team.sprocket.commands;
 
+import edu.wpi.first.wpilibj.Timer;
 import team.sprocket.main.CommandList;
 
 public class Autonomous extends CommandBase {
@@ -17,10 +18,9 @@ public class Autonomous extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         CommandList.moveForward.start();
-        //CommandList.moveArmToUpperPosition.start();
         while(CommandList.moveForward.isRunning()){}
-        while(!sensors.harvesterRaiseLimit()){
-            arm.harvesterUp();
+        while(!sensors.harvesterLowerLimit()){
+            arm.harvesterDown();
         }
         arm.harvesterStop();
         CommandList.shootSequence.start();

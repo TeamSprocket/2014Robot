@@ -35,9 +35,9 @@ public class MoveForward extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute(){
         differentialDriveTrain.allForward(0.5);
-        Timer.delay(1.5);
+        Timer.delay(2);
         differentialDriveTrain.stop();
-        Timer.delay(0.25);
+        Timer.delay(2);
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -45,7 +45,7 @@ public class MecanumDrive extends CommandBase {
             return;
         }
         if(rightOffCenter){
-            mecanumDriveTrain.turn(0.3*getJoystickZ());
+            mecanumDriveTrain.turn(0.45*getJoystickZ());
         }
         else mecanumDriveTrain.stop();
   

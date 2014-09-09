@@ -5,7 +5,7 @@ import team.sprocket.commands.CommandBase;
 
 public class MoveArmToLowerPosition extends CommandBase {
     
-    private double position = 4.38;
+    private double position = 4.6;
     private boolean done = false;
     
     public MoveArmToLowerPosition() {
