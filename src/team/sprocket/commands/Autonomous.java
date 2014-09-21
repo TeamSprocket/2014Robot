@@ -1,30 +1,45 @@
-//hi
 package team.sprocket.commands;
 
-import edu.wpi.first.wpilibj.Timer;
+import com.team254.CheesyVisionRobot;
+import com.team254.lib.CheesyVisionServer;
 import team.sprocket.main.CommandList;
 
 public class Autonomous extends CommandBase {
-    
+
+    private CheesyVisionRobot cheesyCheetos;
+    private CheesyVisionServer cheetos;
+
     public Autonomous() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+        cheesyCheetos = new CheesyVisionRobot();
+        cheetos = CheesyVisionServer.getInstance();
+        cheesyCheetos.autonomousInit();
+        cheetos.run();  //not sure which one to call
+        cheetos.start();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+
         CommandList.moveForward.start();
-        while(CommandList.moveForward.isRunning()){}
-        while(!sensors.harvesterLowerLimit()){
+        while (CommandList.moveForward.isRunning()) {
+        }
+        while (!sensors.harvesterLowerLimit()) {
             arm.harvesterDown();
         }
         arm.harvesterStop();
-        CommandList.shootSequence.start();
-    
+        //if the person has been holding his hands over the yellow squares for
+        //over 10*50 = 500 millis, then the shootsequnce starts
+        if (cheetos.getTotalCount() >= 10) {
+            CommandList.shootSequence.start();
+        }
+
     }
 
     // Make this return true when this Command no longer needs to run execute()
