@@ -111,7 +111,7 @@ public class CheesyVisionServer implements Runnable {
     public void run() {
       try {
         InputStream is = connection.openInputStream();
-
+ 
         int ch = 0;
         byte[] b = new byte[1024];
         double timeout = 10.0;

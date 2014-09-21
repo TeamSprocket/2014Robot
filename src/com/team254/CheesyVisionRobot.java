@@ -19,7 +19,7 @@ public class CheesyVisionRobot extends IterativeRobot {
 
     CheesyVisionServer server = CheesyVisionServer.getInstance();
     public final int listenPort = 1180;
-    
+     
     public void robotInit() {
         server.setPort(listenPort);
         server.start();
