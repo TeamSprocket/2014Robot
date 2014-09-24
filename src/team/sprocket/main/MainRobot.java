@@ -6,9 +6,7 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
-
 package team.sprocket.main;
-
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -50,11 +48,11 @@ public class MainRobot extends IterativeRobot {
         CommandList.autonomous.cancel();
         CommandBase.sensors.stopTimer();
         CommandBase.sensors.resetTimer();
-        
+
         //CommandList.tusharDrive.start();
-        //CommandList.tankDrive.start();
+        CommandList.tankDrive.start();
         //CommandList.buttonDrive.start();
-        CommandList.mecanumDrive.start();
+        // CommandList.mecanumDrive.start();
         CommandList.controller.start();
         //CommandList.accelerationMonitor.start();
         //CommandList.cock.start();
@@ -62,9 +60,9 @@ public class MainRobot extends IterativeRobot {
 
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-        
+
     }
-    
+
     public void testPeriodic() {
         LiveWindow.run();
     }

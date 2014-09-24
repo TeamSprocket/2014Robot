@@ -2,8 +2,8 @@
 
 package team.sprocket.commands.shooter;
 
+import edu.wpi.first.wpilibj.Solenoid;
 import team.sprocket.commands.CommandBase;
-import team.sprocket.main.CommandList;
 
 public class Shoot extends CommandBase {
     

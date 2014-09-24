@@ -28,10 +28,6 @@
                 <action name="clean">
                     <target>clean</target>
                 </action>
-                <action name="run">
-                    <target>deploy</target>
-                    <target>run</target>
-                </action>
                 <action name="rebuild">
                     <target>clean</target>
                     <target>jar-app</target>
@@ -42,6 +38,22 @@
                 </action>
                 <action name="javadoc">
                     <target>javadoc</target>
+                </action>
+                <action name="run">
+                    <target>run</target>
+                </action>
+                <action name="run.single">
+                    <script>nbproject/ide-file-targets.xml</script>
+                    <target>run-selected-file-in-src</target>
+                    <context>
+                        <property>run.class</property>
+                        <folder>src</folder>
+                        <pattern>\.java$</pattern>
+                        <format>java-name</format>
+                        <arity>
+                            <one-file-only/>
+                        </arity>
+                    </context>
                 </action>
             </ide-actions>
             <export>
@@ -61,11 +73,11 @@
                 </items>
                 <context-menu>
                     <ide-action name="build"/>
-                    <ide-action name="clean"/>
-                    <ide-action name="run"/>
                     <ide-action name="rebuild"/>
-                    <ide-action name="debug"/>
+                    <ide-action name="clean"/>
                     <ide-action name="javadoc"/>
+                    <ide-action name="run"/>
+                    <ide-action name="debug"/>
                     <action>
                         <label>Sun SPOT-deploy</label>
                         <target>deploy</target>

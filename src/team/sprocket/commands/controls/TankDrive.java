@@ -1,35 +1,57 @@
-//Contributors: HC
-
+//Contributors: HC, FH
 package team.sprocket.commands.controls;
 
+import edu.wpi.first.wpilibj.Relay;
 import team.sprocket.commands.CommandBase;
 import team.sprocket.main.OI;
 
 public class TankDrive extends CommandBase {
-    
+
     public TankDrive() {
-        
+
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+
+        OI.solenoid1.set(true);
+        OI.solenoid2.set(false);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        if(OI.jb_LeftAttackTrigger.get()){
-            differentialDriveTrain.setLeftSide(OI.jy_LeftAttack.getY());
+        //press trigger to stop
+        if (OI.jb_RightAttackTrigger.get() || OI.jb_LeftAttackTrigger.get()) {
+            differentialDriveTrain.stop();
+            return;
         }
-        if(OI.jb_RightAttackTrigger.get()){
-            differentialDriveTrain.setRightSide(OI.jy_RightAttack.getY());
+        differentialDriveTrain.setLeftSide(OI.jy_LeftAttack.getY());
+
+        differentialDriveTrain.setRightSide(OI.jy_RightAttack.getY());
+
+        //press 3 to toggle pneumatics
+        if (OI.jb_LeftAttackTop.get() || OI.jb_RightAttackTop.get()) {
+            OI.solenoid1.set(!OI.solenoid1.get());
+            OI.solenoid2.set(!OI.solenoid2.get());
+
         }
-        else differentialDriveTrain.stop();
+        
+        if (!OI.ls_pneumaticControlSwitch.get()) {
+            OI.relay.set(Relay.Value.kOff);
+        } else {
+            OI.relay.set(Relay.Value.kOn);
+        }
+
+    }
+
+    private void shooterUpdate() {
+
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         return false;
-        //never stop
+        //never stop 
     }
 
     // Called once after isFinished returns true

@@ -23,6 +23,7 @@ public abstract class CommandBase extends Command {
     public static MecanumDriveTrain mecanumDriveTrain = new MecanumDriveTrain();
     public static Sensors sensors = new Sensors();
     public static Arm arm = new Arm();
+   
 
     public static void init() {
         // This MUST be here. If the OI creates Commands (which it very likely

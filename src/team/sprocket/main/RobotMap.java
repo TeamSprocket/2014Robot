@@ -1,4 +1,4 @@
-//Contributors: HC
+//Contributors: HC, FH
 
 package team.sprocket.main;
 
@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.Victor;
 
 //named HW class last year...not sure why (HC)
 public class RobotMap {
-    
+   
     //Digital IO Module # for Arm Motors
     public static final int driveTrainDigitalModule         = 1;
     public static final int rackDriverDigitalModule         = 1;
@@ -23,17 +23,18 @@ public class RobotMap {
     public static final int harvesterActuatorDigitalModule  = 1;
     
     //PWM Port # for Drive Train Motors
-    public static final int frontLeftDriveTrainMotorPort    = 1;
+    public static final int frontLeftDriveTrainMotorPort    = 7;
     public static final int frontRightDriveTrainMotorPort   = 3;
-    public static final int backLeftDriveTrainMotorPort     = 2;
+    public static final int backLeftDriveTrainMotorPort     = 8;
     public static final int backRightDriveTrainMotorPort    = 4;
     
     //PWM Port # for Arm Motors
+    public static final int triggerWindowMotorPort          = 1;
+    public static final int harvesterActuatorMotorPort      = 2;
     public static final int rackDriverMotorPort             = 5;
-    public static final int triggerWindowMotorPort          = 6;
-    public static final int collectorMotorPort              = 7;
-    public static final int armActuatorMotorPort            = 8;
-    public static final int harvesterActuatorMotorPort      = 9;
+    public static final int collectorMotorPort              = 6;
+    public static final int armActuatorMotorPort            = 9;
+    
     
     //USB Port # for Interface Devices
     public static final int leftJoystickUSBPort             = 1;
