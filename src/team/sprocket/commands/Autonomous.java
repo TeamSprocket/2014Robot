@@ -1,5 +1,5 @@
 package team.sprocket.commands;
- 
+
 import com.team254.CheesyVisionRobot;
 import com.team254.lib.CheesyVisionServer;
 import team.sprocket.main.CommandList;
@@ -9,6 +9,7 @@ public class Autonomous extends CommandBase {
     private CheesyVisionRobot cheesyCheetos;
     private CheesyVisionServer cheetos;
     private boolean shooting = false;
+
     public Autonomous() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -41,7 +42,7 @@ public class Autonomous extends CommandBase {
         //over 10*50 = 500 millis, then the shootsequnce starts
         if (cheetos.getTotalCount() >= 10 && !shooting) {
             CommandList.shootSequence.start();
-            shooting =true;
+            shooting = true;
         }
 
     }

@@ -14,8 +14,8 @@ public class TankDrive extends CommandBase {
     // Called just before this Command runs the first time
     protected void initialize() {
 
-        OI.solenoid1.set(true);
-        OI.solenoid2.set(false);
+//        OI.solenoid1.set(true);
+//        OI.solenoid2.set(false);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -30,17 +30,17 @@ public class TankDrive extends CommandBase {
         differentialDriveTrain.setRightSide(OI.jy_RightAttack.getY());
 
         //press 3 to toggle pneumatics
-        if (OI.jb_LeftAttackTop.get() || OI.jb_RightAttackTop.get()) {
-            OI.solenoid1.set(!OI.solenoid1.get());
-            OI.solenoid2.set(!OI.solenoid2.get());
-
-        }
-        
-        if (!OI.ls_pneumaticControlSwitch.get()) {
-            OI.relay.set(Relay.Value.kOff);
-        } else {
-            OI.relay.set(Relay.Value.kOn);
-        }
+//        if (OI.jb_LeftAttackTop.get() || OI.jb_RightAttackTop.get()) {
+//            OI.solenoid1.set(!OI.solenoid1.get());
+//            OI.solenoid2.set(!OI.solenoid2.get());
+//
+//        }
+//        
+//        if (!OI.ls_pneumaticControlSwitch.get()) {
+//            OI.relay.set(Relay.Value.kOff);
+//        } else {
+//            OI.relay.set(Relay.Value.kOn);
+//        }
 
     }
 

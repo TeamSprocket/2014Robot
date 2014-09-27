@@ -105,13 +105,13 @@ public class Controller extends CommandBase {
             CommandList.shootSequence.start();
         }
 
-        if (getRightThrottle() && !CommandList.shootSequence.isRunning()) {
-            CommandList.shoot.start();
-        }
+//        if (getRightThrottle() && !CommandList.shootSequence.isRunning()) {
+//            CommandList.shoot.start();
+//        }
 
-        if (!CommandList.moveArmToLowerPosition.isRunning()) {
-            CommandList.moveArmToLowerPosition.start();
-        }
+//        if (!CommandList.moveArmToLowerPosition.isRunning()) {
+//            CommandList.moveArmToLowerPosition.start();
+//        }
 
         /*if(getJoystick8() && getJoystick9()){
          CommandList.shoot.cancel();
@@ -157,37 +157,40 @@ public class Controller extends CommandBase {
          }*/
         //arm listener
         //use left throttle and left joystick to move arm
-        if (Math.abs(getRightJoystick()) > 0.1 && Math.abs(jy) > deadband) {
-            //arm up listener
-
-            if (sensors.getArmPot() < 0.5) {
-                modifiedDownSpeed = 0.33;
-            }
-
-            
-            if (sensors.getArmPot() > 4.7) {
-                modifiedUpSpeed = 0.68;
-            }
-
-            if (jy > 0) {
-                if (!sensors.armRaiseLimit()) {
-                    arm.armUp(modifiedUpSpeed);
-                } else {
-                    arm.armStop();
-                }
-            }
-            //arm down listener
-            if (jy < 0) {
-                if (!sensors.armLowerLimit()) {
-                    arm.armDown(modifiedDownSpeed);
-                } else {
-                    arm.armStop();
-                }
-            }
-
-        } else {
-            arm.armStop();
-        }
+        //ARMMMMMMMMMMMMMMM CODE
+        //ARMMMMMMMMMMMMMMM CODE
+        //ARMMMMMMMMMMMMMMM CODE
+//        if (Math.abs(getRightJoystick()) > 0.1 && Math.abs(jy) > deadband) {
+//            //arm up listener
+//
+//            if (sensors.getArmPot() < 0.5) {
+//                modifiedDownSpeed = 0.33;
+//            }
+//
+//            
+//            if (sensors.getArmPot() > 4.7) {
+//                modifiedUpSpeed = 0.68;
+//            }
+//
+//            if (jy > 0) {
+//                if (!sensors.armRaiseLimit()) {
+//                    arm.armUp(modifiedUpSpeed);
+//                } else {
+//                    arm.armStop();
+//                }
+//            }
+//            //arm down listener
+//            if (jy < 0) {
+//                if (!sensors.armLowerLimit()) {
+//                    arm.armDown(modifiedDownSpeed);
+//                } else {
+//                    arm.armStop();
+//                }
+//            }
+//
+//        } else {
+//            arm.armStop();
+//        }
 
         //y to lower, a to raise
 //        if (getGamepadY() || getGamepadA()) {

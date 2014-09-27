@@ -11,6 +11,7 @@ package team.sprocket.main;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import team.sprocket.commands.Autonomous;
 import team.sprocket.commands.CommandBase;
 
 /**
@@ -21,6 +22,10 @@ import team.sprocket.commands.CommandBase;
  * directory.
  */
 public class MainRobot extends IterativeRobot {
+
+    public static void main(String[] args) {
+        new Autonomous().start();
+    }
 
     public void robotInit() {
         // instantiate the command used for the autonomous period
@@ -54,8 +59,8 @@ public class MainRobot extends IterativeRobot {
         //CommandList.buttonDrive.start();
         // CommandList.mecanumDrive.start();
         CommandList.controller.start();
-        //CommandList.accelerationMonitor.start();
-        //CommandList.cock.start();
+//        CommandList.accelerationMonitor.start();
+        CommandList.cock.start();
     }
 
     public void teleopPeriodic() {
