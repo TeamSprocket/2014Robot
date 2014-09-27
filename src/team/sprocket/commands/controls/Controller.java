@@ -35,7 +35,7 @@ public class Controller extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         //arm.advanceLatch();
-        jy = getGamepadYAxis();
+        jy = getRightJoystick();
         modifiedUpSpeed = 1;
         modifiedDownSpeed = 1;
 
@@ -72,13 +72,13 @@ public class Controller extends CommandBase {
 //        }
 //        else arm.rollStop();
         //harvester controls
-        if (Math.abs(getRawAxis()) == 1) {
-            if (getRawAxis() == 1) {
+        if (Math.abs(OI.jy_Gamepad.getY()) >= .1) {
+            if (OI.jy_Gamepad.getY() > 0.1) {
                 if (!sensors.harvesterRaiseLimit()) {
                     arm.harvesterUp();
                 }
             }
-            if (getRawAxis() == -1) {
+            if (OI.jy_Gamepad.getY() < 0.1) {
                 if (!CommandList.lowerHarvester.isRunning()) {
                     CommandList.lowerHarvester.start();
                 }
@@ -86,18 +86,26 @@ public class Controller extends CommandBase {
         } else if (!CommandList.shoot.isRunning() && !CommandList.cock.isRunning() && !CommandList.shootSequence.isRunning()) {
             arm.harvesterStop();
         }
-
+        
+        //harvester in/out
+        if(getLeftTrigger() || getLeftThrottle()){
+            if(getLeftTrigger()){
+                CommandList.harvest.start();
+            } else {
+                CommandList.unharvest.start();
+            }
+        }
         /*if(getJoystickTop() && !CommandList.automatedShootingSystem.isRunning()){
          CommandList.automatedShootingSystem.start();
          }*/
         //Shoot Listener
         //b to shoot
         // needs testing
-        if (getGamepadB() && !CommandList.shootSequence.isRunning()) {
+        if (getRightThrottle() && !CommandList.shootSequence.isRunning()) {
             CommandList.shootSequence.start();
         }
 
-        if (getGamepadB() && !CommandList.shootSequence.isRunning()) {
+        if (getRightThrottle() && !CommandList.shootSequence.isRunning()) {
             CommandList.shoot.start();
         }
 
@@ -118,26 +126,23 @@ public class Controller extends CommandBase {
          }
          else if(!CommandList.shoot.isRunning() && !CommandList.cock.isRunning() && !CommandList.shootSequence.isRunning() && !CommandList.lowerHarvester.isRunning()){
          arm.harvesterStop();
-         }/*
-        
-         //manual rack operation
-         /*if(getJoystick6() || getJoystick7()){
-         if(getJoystick6()){
-         arm.advanceRack();
-         }
-         if(getJoystick7()){
-         if(!sensors.cockLimit()){
-         arm.withdrawRack();
-         }
-         else{
-         arm.stopRack();
-         }
-         }
-            
-         }
-         else if(!CommandList.shoot.isRunning() && !CommandList.cock.isRunning() && !CommandList.shootSequence.isRunning()){
-         arm.stopRack();
          }*/
+        //manual rack operation
+        if (getStart() || getRightTrigger()) {
+            if (getRightTrigger()) {
+                arm.advanceRack();
+            }
+            if (getStart()) {
+                if (!sensors.cockLimit()) {
+                    arm.withdrawRack();
+                } else {
+                    arm.stopRack();
+                }
+            }
+
+        } else if (!CommandList.shoot.isRunning() && !CommandList.cock.isRunning() && !CommandList.shootSequence.isRunning()) {
+            arm.stopRack();
+        }
         //manual latch operation
         /*if(getJoystick10() || getJoystick11()){
          if(getJoystick10()){
@@ -152,13 +157,14 @@ public class Controller extends CommandBase {
          }*/
         //arm listener
         //use left throttle and left joystick to move arm
-        if (getLeftThrottle() && Math.abs(jy) > deadband) {
+        if (Math.abs(getRightJoystick()) > 0.1 && Math.abs(jy) > deadband) {
             //arm up listener
 
             if (sensors.getArmPot() < 0.5) {
                 modifiedDownSpeed = 0.33;
             }
 
+            
             if (sensors.getArmPot() > 4.7) {
                 modifiedUpSpeed = 0.68;
             }
@@ -182,19 +188,25 @@ public class Controller extends CommandBase {
         } else {
             arm.armStop();
         }
-        
+
         //y to lower, a to raise
-        if (getGamepadY() || getGamepadA()) {
-            if (getGamepadY() && !sensors.harvesterLowerLimit()) {
-                arm.harvesterDown();
-            } else if (getGamepadA() && !sensors.harvesterRaiseLimit()) {
-                arm.harvesterUp();
-            } else {
-                arm.harvesterStop();
-            }
-        } else {
-            arm.harvesterStop();
-        }
+//        if (getGamepadY() || getGamepadA()) {
+//            if (getGamepadY() && !sensors.harvesterLowerLimit()) {
+//                arm.harvesterDown();
+//            } else if (getGamepadA() && !sensors.harvesterRaiseLimit()) {
+//                arm.harvesterUp();
+//            } else {
+//                arm.harvesterStop();
+//            }
+//        } else {
+//            arm.harvesterStop();
+//        }
+    }
+    private boolean getLeftTrigger(){
+        return OI.jb_LeftGamepadTrigger.get();
+    }
+    private boolean getStart() {
+        return OI.jb_Start.get();
     }
 
     private boolean getGamepadA() {
@@ -209,20 +221,24 @@ public class Controller extends CommandBase {
         return OI.jb_GamepadB.get();
     }
 
+    public boolean getRightTrigger() {
+        return OI.jb_RightGamepadTrigger.get();
+    }
+
     private boolean getLeftThrottle() {
         return OI.jb_LeftGamepadThrottle.get();
     }
 
+    private boolean getRightThrottle() {
+        return OI.jb_RightGamepadThrottle.get();
+    }
+
+    private double getRightJoystick() {
+        return -OI.jy_Gamepad.getThrottle();
+    }
+
     private boolean getGamepadY() {
         return OI.jb_GamepadY.get();
-    }
-
-    private boolean getGamepadLT() {
-        return OI.jb_LeftGamepadThrottle.get();
-    }
-
-    private boolean getGamepadRT() {
-        return OI.jb_RightGamepadThrottle.get();
     }
 
     private double getGamepadYAxis() {

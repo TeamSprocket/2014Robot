@@ -28,6 +28,7 @@ public class OI {
     public static final JoystickButton jb_RightGamepadTrigger = new JoystickButton(jy_Gamepad, 6);
     public static final JoystickButton jb_LeftGamepadThrottle = new JoystickButton(jy_Gamepad, 7);
     public static final JoystickButton jb_RightGamepadThrottle = new JoystickButton(jy_Gamepad, 8);
+    public static final JoystickButton jb_Start = new JoystickButton(jy_Gamepad, 10);
 
     public static final JoystickButton jb_LeftAttackTrigger = new JoystickButton(jy_LeftAttack, 1);
     public static final JoystickButton jb_RightAttackTrigger = new JoystickButton(jy_RightAttack, 1);

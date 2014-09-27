@@ -33,6 +33,9 @@ public class Autonomous extends CommandBase {
         while (!sensors.harvesterLowerLimit()) {
             arm.harvesterDown();
         }
+//        while (!sensors.harvesterRaiseLimit()) {
+//            arm.harvesterUp();
+//        }
         arm.harvesterStop();
         //if the person has been holding his hands over the yellow squares for
         //over 10*50 = 500 millis, then the shootsequnce starts

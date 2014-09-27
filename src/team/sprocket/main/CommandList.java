@@ -25,6 +25,7 @@ import team.sprocket.commands.shooter.Plant;
 import team.sprocket.commands.shooter.Shoot;
 import team.sprocket.commands.shooter.ShootSequence;
 import team.sprocket.commands.shooter.SoftRelease;
+import team.sprocket.commands.shooter.Unharvest;
 
 //formerly known as Init class in 2013Robot code
 public class CommandList {
@@ -42,6 +43,7 @@ public class CommandList {
     public static final Command shoot = new Shoot();
     public static final Command softRelease = new SoftRelease();
     public static final Command harvest = new Harvest();
+    public static final Command unharvest = new Unharvest();
     public static final Command controller = new Controller();
     public static final Command plant = new Plant();
     public static final Command shootSequence = new ShootSequence();
